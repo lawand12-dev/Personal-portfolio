@@ -1,5 +1,6 @@
 import type { KeyboardEvent, MouseEvent } from 'react'
 import { designTokens } from '../DesignTokens'
+import usePageMetadata from '../hooks/usePageMetadata'
 import './KitchenSinkPage.css'
 
 const colorSamples = [
@@ -24,6 +25,12 @@ const spacingSamples = [
 ]
 
 function KitchenSinkPage() {
+  usePageMetadata(
+    'Design system — Lawand Soran',
+    'An internal showcase of the portfolio design tokens and reusable components.',
+    'noindex,nofollow',
+  )
+
   function handleMobileNavigationKeyDown(
     event: KeyboardEvent<HTMLDetailsElement>,
   ) {

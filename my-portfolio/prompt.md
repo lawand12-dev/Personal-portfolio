@@ -476,6 +476,10 @@ This is the longest phase. Work in this order: `PageShell` → `NavBar` → `Ter
 
 **Decisions to make:** Fix whatever Lighthouse flags. Don't argue with it. Then run it again.
 
+**Updated decision:** Defer canonical URLs, `og:url`, the absolute Open Graph image URL, `sitemap.xml`, and `robots.txt` sitemap reference until Phase 11, when the production domain is chosen. Do not publish localhost URLs or guess a domain.
+
+**Verification:** Local mobile Lighthouse scores are Performance 96, Accessibility 100, Best Practices 100, and SEO 100. The measured lab LCP was 2.19s, above the 1.5s project target; recheck it on the deployed site. Keyboard flows and the browser accessibility tree were checked, but a VoiceOver/NVDA pass remains to be done manually.
+
 ### Phase 11 — Testing and Deployment
 
 **Deliverable:** Site deployed to production URL. Custom domain configured. Analytics installed and verified. OG image previews correctly on Twitter and LinkedIn.

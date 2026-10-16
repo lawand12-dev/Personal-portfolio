@@ -3,8 +3,9 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function NotFoundPage() {
   usePageMetadata(
-    'Page not found — Lawand Soran',
+    'Page not found — Lawand Soran — Junior Frontend Developer',
     'The requested page could not be found. Return to Lawand Soran’s portfolio.',
+    'noindex,follow',
   )
 
   return (
