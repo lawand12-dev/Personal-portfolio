@@ -11,7 +11,7 @@
 | Terminal transcript | `src/components/ui/TerminalWindow.tsx` | Static transcript source animated at runtime. |
 | Document metadata and Person JSON-LD | `index.html` | Initial HTML metadata/schema. |
 | Route-specific title/description/robots/OG/Twitter fields | `src/hooks/usePageMetadata.ts` and page usage | Updated client-side after route navigation. |
-| Existing content plan | `CONTENT.md` | Planning document; not imported by application code. |
+| Existing content plan | `docs/planning/CONTENT-PLAN.md` | Planning document; not imported by application code. |
 
 There is no runtime content directory, project catalog, blog-post schema, loader, frontmatter parser, or resume data. The installed `@mdx-js/react` and `@mdx-js/rollup` packages are not configured in `vite.config.ts` or used by a page.
 
@@ -83,5 +83,4 @@ The example is illustrative, not accepted by the current build. There is current
 
 ## Adding a future blog post
 
-The current site cannot render an MDX post by adding a file alone. A complete future implementation would need to configure MDX in Vite, decide and validate frontmatter, define a content-loading/sorting strategy, add a post route and renderer, update the writing index, and then add the `.mdx` file. The planned `content/blog/` location appears in `prompt.md` but does not exist in the current tree.
-
+The current site cannot render an MDX post by adding a file alone. A complete future implementation would need to configure MDX in Vite, decide and validate frontmatter, define a content-loading/sorting strategy, add a post route and renderer, update the writing index, and then add the `.mdx` file. The planned `content/blog/` location appears in [the original project plan](./planning/PROJECT-PLAN.md) but does not exist in the current tree.

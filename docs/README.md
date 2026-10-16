@@ -1,6 +1,6 @@
 # Portfolio documentation
 
-This documentation set describes the portfolio's implemented architecture, visual system, components, motion, content status, and next steps. It distinguishes code that exists from design-plan items that have not been built.
+This documentation set describes the portfolio's implemented architecture, visual system, components, motion, content status, and next steps. It distinguishes code that exists from design-plan items that have not been built. Original design and content planning material is grouped in [`planning/`](./planning/README.md).
 
 | Document | Covers |
 | --- | --- |
@@ -12,4 +12,3 @@ This documentation set describes the portfolio's implemented architecture, visua
 | [ROADMAP.md](./ROADMAP.md) | Status snapshot, prioritized work, estimates, launch dependencies, known gaps, and a suggested 2–4 week sequence. |
 
 Update the relevant document whenever its source of truth changes. In particular, keep stack and routes aligned with `package.json` and `src/App.tsx`, token and interaction details aligned with the CSS, and the roadmap aligned with actual content and verified launch status. Mark proposed schemas and planned features as such until they exist in code.
-

@@ -3,7 +3,7 @@
 ## Decisions
 
 - **Homepage hero:** Asymmetric, left-aligned identity and actions with the terminal transcript to the right on wide screens. On narrow screens, identity and actions come first, followed by the terminal.
-- **Project cards:** Horizontal content/preview split on wide screens; stacked vertically on narrow screens. The content gets the larger share. Until real projects exist, show the honest text-only empty state from `CONTENT.md`, not a fake preview.
+- **Project cards:** Horizontal content/preview split on wide screens; stacked vertically on narrow screens. The content gets the larger share. Until real projects exist, show the honest text-only empty state from `CONTENT-PLAN.md`, not a fake preview.
 - **Mobile navigation:** A visible menu button opens a simple navigation drawer. Links remain ordinary links; opening the drawer must not be required to understand the site.
 - **Resume link:** Keep it in the planned navigation, but do not show a live link until resume content exists.
 - **Header:** Keep the primary navigation visible at the top while scrolling, as specified in the project brief.

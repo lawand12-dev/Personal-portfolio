@@ -4,7 +4,7 @@
 
 | Area | Status | Evidence and remaining boundary |
 | --- | --- | --- |
-| Branding, visual direction, content planning, and wireframes | Complete as planning artifacts | `BRAND.md`, `MOOD.md`, `CONTENT.md`, and `WIREFRAMES.md` exist. Project ideas were intentionally left undecided. |
+| Branding, visual direction, content planning, and wireframes | Complete as planning artifacts | [`docs/planning/`](./planning/README.md) contains the brand, visual direction, content plan, and wireframes. Project ideas were intentionally left undecided. |
 | Design tokens and component showcase | Complete | CSS tokens and `/dev/kitchen-sink` exist. Some planned showcase/component ideas are not live portfolio features. |
 | App setup and core public pages | Complete, with intentional omissions | Vite/React/TypeScript app and home/work/writing/about/404 routes exist. Work and writing are empty states; resume and case-study/article routes are absent. |
 | Motion and responsive layout | Implemented and checked | Typing, reveals, transitions, mobile navigation, and reduced-motion handling exist. Earlier viewport checks covered 320, 375, 768, 1024, and 1440 CSS pixels. Physical touch-device behavior was not independently confirmed. |
@@ -21,10 +21,10 @@ Effort estimates are planning estimates, not measured implementation times.
 | Priority / task | Why it matters for a junior frontend role | Likely code/docs touched | Effort | Blocks |
 | --- | --- | --- | --- | --- |
 | 1. Choose and build at least two real, presentable projects; record genuine problem, implementation, and outcome details. | Recruiters need evidence of working frontend skills. The portfolio brief identifies absent projects as its largest effectiveness risk. | New project content; `src/pages/WorkIndexPage.tsx`; `src/pages/HomePage.tsx`; potentially new project-detail route/components and project assets. | High; multiple focused sessions | Blocks a credible populated work page and project case studies. |
-| 2. Finalize and verify professional content: role statement, skills, biography, links, and resume material. | Accurate, specific claims and a reachable resume help recruiters evaluate the candidate. Existing copy and skill claims should match demonstrable experience. | `BRAND.md`, `CONTENT.md`, `src/pages/HomePage.tsx`, `src/pages/AboutPage.tsx`, future resume route or PDF. | Medium | Resume navigation/page should wait for actual resume content; public content should be reviewed before launch. |
+| 2. Finalize and verify professional content: role statement, skills, biography, links, and resume material. | Accurate, specific claims and a reachable resume help recruiters evaluate the candidate. Existing copy and skill claims should match demonstrable experience. | `docs/planning/BRAND.md`, `docs/planning/CONTENT-PLAN.md`, `src/pages/HomePage.tsx`, `src/pages/AboutPage.tsx`, future resume route or PDF. | Medium | Resume navigation/page should wait for actual resume content; public content should be reviewed before launch. |
 | 3. Recheck accessibility and performance on real devices, then address LCP and complete a VoiceOver/NVDA pass. | Demonstrates practical accessibility and performance judgment beyond a high Lighthouse snapshot. | `src/components/ui/TerminalWindow.tsx`, font-loading styles in `src/styles/index.css`, image/content work, route shell as needed. | Medium | Recommended before deployment; actual project imagery may change performance. |
 | 4. Choose the production domain/host and complete Phase 11 deployment and URL-dependent SEO. | A shareable live portfolio is necessary for applications; real URLs enable complete social previews and indexing. | `index.html`, `src/hooks/usePageMetadata.ts`, `public/robots.txt`, sitemap/OG assets, deployment configuration. | Medium | Requires domain/host decision; canonical URLs, `og:url`, absolute OG image URL, and sitemap are deliberately deferred until then. |
-| 5. Complete a final link/content/device checklist and publish. | Prevents broken navigation and placeholder material from undermining the candidate's first impression. | All public routes/assets; suggested checklist is described in `prompt.md` Phase 12. | Low–medium | Final launch gate. |
+| 5. Complete a final link/content/device checklist and publish. | Prevents broken navigation and placeholder material from undermining the candidate's first impression. | All public routes/assets; suggested checklist is described in [`docs/planning/PROJECT-PLAN.md`](./planning/PROJECT-PLAN.md), Phase 12. | Low–medium | Final launch gate. |
 
 ## Suggested sequence for the next 2–4 weeks
 
@@ -46,4 +46,3 @@ Effort estimates are planning estimates, not measured implementation times.
 - Page-specific metadata is updated client-side; there is no static/server-rendered metadata per route.
 - Local mobile Lighthouse LCP was above the project's stated 1.5s target; repeat measurement on the deployed build.
 - Manual VoiceOver/NVDA validation and physical-device touch testing remain unconfirmed.
-

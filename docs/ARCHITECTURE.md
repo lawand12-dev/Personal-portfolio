@@ -51,7 +51,9 @@ No test framework or test files are currently present. The package scripts are `
 | `src/DesignTokens.ts` | Typed names for CSS variables, consumed by the kitchen-sink page. |
 | `src/assets/LS_logo.svg` | Logo asset; it is not currently imported by the application. |
 | `src/index.css`, `src/App.css` | Present but empty; they are not the active style entry points. |
-| `README.md`, `BRAND.md`, `MOOD.md`, `CONTENT.md`, `WIREFRAMES.md`, `prompt.md` | Existing setup text, identity and design direction, content plan, wireframes, and implementation brief. |
+| `README.md` | Repository overview and local setup instructions. |
+| `docs/` | Implementation documentation, indexed in `docs/README.md`. |
+| `docs/planning/` | Brand, content plan, visual direction, wireframes, and original project brief. |
 | `docs/` | This codebase documentation set. |
 
 There is no `src/content/`, project-data module, blog directory, or resume asset in the current tree.
@@ -82,7 +84,7 @@ There is no content loading, parsing, CMS, or API layer. Page copy is authored d
 - Biography text is in `src/pages/AboutPage.tsx`.
 - Terminal transcript lines are in `src/components/ui/TerminalWindow.tsx`.
 
-`@mdx-js/react` and `@mdx-js/rollup` are installed but are not configured or used. No frontmatter schema or project/article data type exists. The existing `CONTENT.md` is a planning document, not a runtime content source.
+`@mdx-js/react` and `@mdx-js/rollup` are installed but are not configured or used. No frontmatter schema or project/article data type exists. The planning document in `docs/planning/CONTENT-PLAN.md` is not a runtime content source; [docs/CONTENT.md](./CONTENT.md) documents the implementation's current content state.
 
 ## Design tokens and styles
 
@@ -113,6 +115,5 @@ There is no `components/motion/` directory or centralized motion-configuration m
 | Do not publish a resume route/link without supplied resume material | Add a resume page immediately | The source tree contains no resume content or PDF; the wireframes say to hide the link until ready. |
 | Keep all public routes inside one `PageShell` | Repeat header/footer in every page | The shell provides consistent navigation, accessibility landmarks, and footer composition. |
 | Use a standalone `/dev/kitchen-sink` page | Put token specimens into the public shell | The showcase is a development surface with its own sample navigation and page styles. |
-| Keep the app local until implementation phases finish | Deploy during initial setup | This is an explicit updated decision in `prompt.md`; URL-dependent SEO is deferred until a domain is chosen. |
+| Keep the app local until implementation phases finish | Deploy during initial setup | This is an explicit updated decision in [`docs/planning/PROJECT-PLAN.md`](./planning/PROJECT-PLAN.md); URL-dependent SEO is deferred until a domain is chosen. |
 | Keep metadata updates client-side | Build-time or server-rendered per-route metadata | This matches the current Vite SPA; it means route-specific metadata is applied after JavaScript runs. |
-

@@ -21,7 +21,7 @@ This document describes values implemented in `src/styles/index.css`, `src/style
 | Control border (`--color-border-control`) | `rgba(255, 255, 255, 0.5)` | Form-like controls and secondary button borders. |
 | Focus outline | `#ffffff` | Keyboard focus indicators. |
 
-The palette is dark and greyscale; there is no colored accent token. The earlier `prompt.md` describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The unused `src/assets/LS_logo.svg` contains its own color and does not currently contribute to the rendered palette.
+The palette is dark and greyscale; there is no colored accent token. The original [project plan](./planning/PROJECT-PLAN.md) describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The unused `src/assets/LS_logo.svg` contains its own color and does not currently contribute to the rendered palette.
 
 ## Typography
 
@@ -66,7 +66,7 @@ The base spacing increment is `0.25rem` (4px). Tokens used by the application ar
 - A separate hero height/layout adjustment applies below 64rem (1024px).
 - The kitchen-sink state grid becomes one column below 48rem.
 
-The plan in `prompt.md` includes 640px and 768px breakpoint labels; the actual app's most visible breakpoint is 48rem for mobile navigation, with Tailwind's 1024px `lg` layout and an 80rem editorial frame.
+The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoint labels; the actual app's most visible breakpoint is 48rem for mobile navigation, with Tailwind's 1024px `lg` layout and an 80rem editorial frame.
 
 ## Borders, radii, and shadows
 
