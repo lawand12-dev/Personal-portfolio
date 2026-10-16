@@ -1,0 +1,229 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/jetbrains-mono/latin-400.css";
+@import "@fontsource/jetbrains-mono/latin-500.css";
+@import "@fontsource/jetbrains-mono/latin-700.css";
+@import "@fontsource/newsreader/latin-400-italic.css";
+
+@theme inline {
+  --color-page: var(--color-bg-page);
+  --color-surface: var(--color-bg-surface);
+  --color-card: var(--color-bg-card);
+  --color-raised: var(--color-bg-raised);
+  --color-primary: var(--color-text-primary);
+  --color-secondary: var(--color-text-secondary);
+  --color-muted: var(--color-text-muted);
+  --color-action: var(--color-action-primary);
+  --color-action-hover: var(--color-action-primary-hover);
+  --color-on-action: var(--color-text-on-action);
+  --color-line: var(--color-border-subtle);
+  --color-line-strong: var(--color-border-strong);
+  --color-focus: var(--color-focus-ring);
+
+  --font-mono: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-editorial);
+
+  --text-display: var(--font-size-display);
+  --text-heading: var(--font-size-heading);
+  --text-subheading: var(--font-size-subheading);
+  --text-body: var(--font-size-body);
+  --text-label: var(--font-size-label);
+  --text-meta: var(--font-size-meta);
+
+  --leading-display: var(--line-height-display);
+  --leading-heading: var(--line-height-heading);
+  --leading-body: var(--line-height-body);
+  --tracking-display-copy: var(--tracking-display);
+  --tracking-label-copy: var(--tracking-label);
+
+  --spacing-0: var(--space-0);
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+
+  --container-content: var(--content-width);
+  --container-reading: var(--reading-width);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Palette primitives from the approved Terminal Editorial brief. */
+  --void: #050505;
+  --surface: #0f0f0f;
+  --card: #111111;
+  --raised: #1a1a1a;
+  --hairline-dim: rgb(255 255 255 / 6%);
+  --hairline-light: rgb(255 255 255 / 12%);
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-muted: #8a8a8a;
+  --accent: #ffffff;
+  --accent-hover: #e5e5e5;
+
+  /* Semantic colors. Components consume these aliases, not primitives. */
+  --color-bg-page: var(--void);
+  --color-bg-surface: var(--surface);
+  --color-bg-card: var(--card);
+  --color-bg-raised: var(--raised);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-action: var(--void);
+  --color-border-subtle: var(--hairline-dim);
+  --color-border-strong: var(--hairline-light);
+  --color-border-control: rgb(255 255 255 / 50%);
+  --color-action-primary: var(--accent);
+  --color-action-primary-hover: var(--accent-hover);
+  --color-focus-ring: var(--accent);
+
+  /* Typography */
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-size-display: clamp(3rem, 7vw, 4rem);
+  --font-size-heading: clamp(1.5rem, 3vw, 2rem);
+  --font-size-subheading: 1.25rem;
+  --font-size-body: 1rem;
+  --font-size-label: 0.8125rem;
+  --font-size-meta: 0.75rem;
+  --line-height-display: 1.1;
+  --line-height-heading: 1.25;
+  --line-height-body: 1.6;
+  --tracking-display: -0.02em;
+  --tracking-label: 0.02em;
+
+  /* Four-pixel spacing scale. */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Layout */
+  --content-width: 68.75rem;
+  --reading-width: 68ch;
+  --page-gutter: var(--space-6);
+  --section-space: var(--space-24);
+  --section-space-compact: var(--space-16);
+
+  /* Shape and elevation */
+  --radius-chip: 0.25rem;
+  --radius-control: 0.375rem;
+  --radius-card: 0.375rem;
+  --radius-terminal: 0.5rem;
+  --shadow-none: none;
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-medium: 240ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--space-16);
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-bg-page);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-body);
+  letter-spacing: 0.005em;
+}
+
+button,
+a {
+  color: inherit;
+  font: inherit;
+}
+
+a {
+  text-underline-offset: 0.25em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-action-primary);
+  color: var(--color-text-on-action);
+}
+
+@media (min-width: 80rem) {
+  body::before,
+  body::after {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border-subtle);
+    content: "";
+    pointer-events: none;
+  }
+
+  body::before {
+    left: max(0px, calc((100vw - var(--content-width)) / 2));
+  }
+
+  body::after {
+    right: max(0px, calc((100vw - var(--content-width)) / 2));
+  }
+}
+
+@media (max-width: 47.999rem) {
+  :root {
+    --page-gutter: var(--space-4);
+    --section-space: var(--section-space-compact);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
