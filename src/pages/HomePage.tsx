@@ -1,5 +1,6 @@
 import SocialLinks from '../components/layout/SocialLinks'
 import ActionLink from '../components/ui/ActionLink'
+import GitHubContributions from '../components/ui/GitHubContributions'
 import Reveal from '../components/ui/Reveal'
 import TerminalWindow from '../components/ui/TerminalWindow'
 import usePageMetadata from '../hooks/usePageMetadata'
@@ -139,6 +140,25 @@ function HomePage() {
               </div>
             ))}
           </dl>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section
+          aria-labelledby="contributions-heading"
+          className="portfolio-section border-t border-line py-16 md:py-24"
+          id="contributions"
+        >
+          <SectionHeading
+            id="contributions-heading"
+            label="~/github"
+            title="GitHub contributions"
+          >
+            A year of activity from my GitHub profile.
+          </SectionHeading>
+          <div className="mt-8">
+            <GitHubContributions />
+          </div>
         </section>
       </Reveal>
 

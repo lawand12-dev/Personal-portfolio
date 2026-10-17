@@ -18,6 +18,29 @@ npm run build
 npm run lint
 ```
 
+## GitHub contributions
+
+The home-page graph loads contribution counts through the Vercel function
+at `/api/contributions`. It uses GitHub's GraphQL API from the server, so the
+GitHub token is never included in the browser bundle.
+
+In the Vercel project settings, add a secret environment variable named
+`GITHUB_TOKEN` for the environments you deploy. Create a classic personal
+access token with only the `read:user` scope; do not add `repo` scopes. Never
+prefix it with `VITE_`, commit it, or paste it into chat. Redeploy after adding
+or changing the secret.
+
+To run the site locally with the API function, link the repository to Vercel,
+pull its environment variables into the ignored `.env.local` file, then run:
+
+```bash
+npx vercel env pull .env.local
+npx vercel dev
+```
+
+`npm run dev` starts Vite only and does not serve the Vercel function. The
+function caches successful GitHub responses for one hour.
+
 ## Project status
 
 The home, work, writing, about, and not-found routes are implemented. Work and writing currently show honest empty states: project/article content, detail routes, and an MDX content pipeline have not been added. See the [roadmap](./docs/ROADMAP.md) for known gaps and next steps.

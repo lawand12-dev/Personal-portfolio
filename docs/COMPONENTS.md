@@ -20,6 +20,7 @@ The mobile navigation is a non-modal disclosure, not a dialog or focus-trapping 
 | `ActionLink` — `src/components/ui/ActionLink.tsx` | Router link styled as an action. Supports `primary` and `secondary` variants; secondary is the default. It remains a navigation link rather than a `<button>`. | `to: string`, `children: ReactNode`, optional `variant: "primary" \| "secondary"` | Home page calls to action and other in-app action links. |
 | `Reveal` — `src/components/ui/Reveal.tsx` | Motion wrapper that reveals content as it enters the viewport. Accepts an optional class and delay; uses a one-time viewport trigger. | `children: ReactNode`, optional `className?: string`, optional `delay?: number` (seconds as passed to Motion) | Home page sections/blocks. |
 | `TerminalWindow` — `src/components/ui/TerminalWindow.tsx` | Displays the terminal-style introduction transcript in a window with decorative red/yellow/green controls, a title, read-only status, and differentiated command/output text. Types characters on an interval unless reduced motion is requested. The complete transcript is available as static accessible text; a CSS cursor blinks alongside the animated text. | No public props | Home hero. |
+| `GitHubContributions` — `src/components/ui/GitHubContributions.tsx` | Loads daily counts from `/api/contributions`, shows loading and recoverable error states, and passes real data to the existing contribution visualization without allowing its demo-data fallback. | No public props | Home page contributions section. |
 
 ## Pages and page-local UI
 

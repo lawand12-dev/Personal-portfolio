@@ -13,6 +13,7 @@ Versions below are the dependency ranges declared in `package.json`; `package-lo
 | `react`, `react-dom` | React UI and browser rendering. |
 | `react-router` | Browser routing, route links, active navigation, and lazy route elements. |
 | `typescript` | Type checking for the application and tooling configuration. |
+| `@vercel/node` | Request and response types for the server-side GitHub contributions function. |
 | `vite` | Development server, bundler, and static production build. |
 | `@vitejs/plugin-react` | React support in the Vite build. |
 | `tailwindcss`, `@tailwindcss/vite` | Tailwind v4 utilities and Vite integration; theme values are declared in CSS, not a Tailwind config file. |
@@ -40,6 +41,7 @@ No test framework or test files are currently present. The package scripts are `
 | `tsconfig.json`, `tsconfig.app.json`, `tsconfig.node.json` | TypeScript project references and app/tooling compiler settings. |
 | `eslint.config.js` | ESLint configuration. |
 | `public/robots.txt` | Public robots file; currently allows all crawlers and does not reference a sitemap. |
+| `api/contributions.ts` | Vercel serverless function that fetches and caches the GitHub contribution calendar. |
 | `src/main.tsx` | Creates the React root, imports global styles, and mounts `App`. |
 | `src/App.tsx` | Declares the router, route components, and standalone kitchen-sink route. |
 | `src/components/layout/` | Shared page shell, site navigation, and footer. |
@@ -77,12 +79,15 @@ Navigation uses ordinary router links rather than terminal commands. The mobile 
 
 ## Content flow
 
-There is no content loading, parsing, CMS, or API layer. Page copy is authored directly in page components:
+There is no CMS or general content pipeline. Page copy is authored directly in page components. The home-page GitHub contribution graph is the exception: `api/contributions.ts` queries GitHub's GraphQL API server-side, and the client loads daily counts from `/api/contributions`. The `GITHUB_TOKEN` secret is used only by that Vercel function and is not exposed to the browser.
 
 - Home sections, skill groups, and social links are in `src/pages/HomePage.tsx`.
+- GitHub activity rendering and loading/error states are in `src/components/ui/GitHubContributions.tsx`; the visualization is `src/contibution.tsx`.
 - Work and writing currently render empty states in `src/pages/WorkIndexPage.tsx` and `src/pages/WritingIndexPage.tsx`.
 - Biography text is in `src/pages/AboutPage.tsx`.
 - Terminal transcript lines are in `src/components/ui/TerminalWindow.tsx`.
+
+The contribution endpoint uses a fixed GitHub profile, rejects non-GET requests, validates the GraphQL response, and caches successful responses for one hour. Deployments must configure `GITHUB_TOKEN` as a Vercel environment secret. Local testing of the serverless endpoint uses `vercel dev`, not Vite's `npm run dev`.
 
 `@mdx-js/react` and `@mdx-js/rollup` are installed but are not configured or used. No frontmatter schema or project/article data type exists. The planning document in `docs/planning/CONTENT-PLAN.md` is not a runtime content source; [docs/CONTENT.md](./CONTENT.md) documents the implementation's current content state.
 
