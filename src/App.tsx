@@ -3,13 +3,13 @@ import { LazyMotion, domAnimation } from 'motion/react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import PageShell from './components/layout/PageShell'
 import HomePage from './pages/HomePage'
+import WritingIndexPage from './pages/WritingIndexPage'
 import './styles/Portfolio.css'
 
 const AboutPage = lazy(() => import('./pages/AboutPage'))
 const KitchenSinkPage = lazy(() => import('./pages/KitchenSinkPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const WorkIndexPage = lazy(() => import('./pages/WorkIndexPage'))
-const WritingIndexPage = lazy(() => import('./pages/WritingIndexPage'))
 
 function PageLoading({ children }: { children: ReactNode }) {
   return (
@@ -48,14 +48,7 @@ function App() {
               }
               path="work"
             />
-            <Route
-              element={
-                <PageLoading>
-                  <WritingIndexPage />
-                </PageLoading>
-              }
-              path="writing"
-            />
+            <Route element={<WritingIndexPage />} path="writing" />
             <Route
               element={
                 <PageLoading>

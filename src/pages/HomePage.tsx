@@ -1,3 +1,4 @@
+import SocialLinks from '../components/layout/SocialLinks'
 import ActionLink from '../components/ui/ActionLink'
 import Reveal from '../components/ui/Reveal'
 import TerminalWindow from '../components/ui/TerminalWindow'
@@ -216,22 +217,6 @@ function SectionHeading({
         </p>
       </div>
     </div>
-  )
-}
-
-function SocialLinks() {
-  return (
-    <nav aria-label="Social profiles" className="portfolio-social-links flex flex-wrap gap-4">
-      <a href="https://github.com/lawand12-dev" rel="noreferrer" target="_blank">
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/lawand-soran" rel="noreferrer" target="_blank">
-        LinkedIn
-      </a>
-      <a href="https://x.com/LawandOps" rel="noreferrer" target="_blank">
-        X
-      </a>
-    </nav>
   )
 }
 

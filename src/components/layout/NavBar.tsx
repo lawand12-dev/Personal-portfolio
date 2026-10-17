@@ -1,5 +1,7 @@
+import { Collapsible } from '@base-ui/react/collapsible'
 import { useRef, useState, type KeyboardEvent } from 'react'
 import { Link, NavLink } from 'react-router'
+import logo from '../../assets/LS_logo.svg'
 
 const links = [
   { label: 'Work', to: '/work' },
@@ -49,14 +51,25 @@ function NavBar() {
       className="portfolio-header sticky top-0 z-20 border-b border-line bg-page"
       onKeyDown={handleMobileNavigationKeyDown}
     >
-      <div className="portfolio-container portfolio-header-inner">
+      <Collapsible.Root
+        className="portfolio-container portfolio-header-inner"
+        onOpenChange={setMobileNavigationOpen}
+        open={mobileNavigationOpen}
+      >
         <div className="portfolio-header-row flex min-h-16 items-center justify-between gap-6">
           <Link
             aria-label="Lawand Soran, home"
             className="portfolio-wordmark font-mono text-label font-bold tracking-label-copy"
             to="/"
           >
-            Lawand Soran<span aria-hidden="true">/</span>
+            <img
+              alt=""
+              aria-hidden="true"
+              className="portfolio-brand-mark"
+              src={logo}
+            />
+            <span className="portfolio-wordmark-name">Lawand Soran</span>
+            <span aria-hidden="true">/</span>
           </Link>
 
           <nav
@@ -66,29 +79,28 @@ function NavBar() {
             <NavigationLinks />
           </nav>
 
-          <button
+          <Collapsible.Trigger
             aria-controls="mobile-primary-navigation"
-            aria-expanded={mobileNavigationOpen}
             className="portfolio-menu-trigger"
-            onClick={() => setMobileNavigationOpen((open) => !open)}
             ref={menuButtonRef}
             type="button"
           >
             Menu
-          </button>
+          </Collapsible.Trigger>
         </div>
-        <nav
-          aria-label="Primary navigation"
+
+        <Collapsible.Panel
           className="portfolio-mobile-links"
-          hidden={!mobileNavigationOpen}
           id="mobile-primary-navigation"
         >
-          <NavigationLinks
-            mobile
-            onNavigate={() => setMobileNavigationOpen(false)}
-          />
-        </nav>
-      </div>
+          <nav aria-label="Primary navigation">
+            <NavigationLinks
+              mobile
+              onNavigate={() => setMobileNavigationOpen(false)}
+            />
+          </nav>
+        </Collapsible.Panel>
+      </Collapsible.Root>
     </header>
   )
 }

@@ -19,9 +19,12 @@ This document describes values implemented in `src/styles/index.css`, `src/style
 | Subtle border (`--color-border-subtle`) | `rgba(255, 255, 255, 0.06)` | Section separators and quiet framing. |
 | Strong border (`--color-border-strong`) | `rgba(255, 255, 255, 0.12)` | Terminal frame and emphasized outlines. |
 | Control border (`--color-border-control`) | `rgba(255, 255, 255, 0.5)` | Form-like controls and secondary button borders. |
+| Terminal close control (`--color-terminal-control-close`) | `#ef4444` | Decorative red window control in the home-page terminal. |
+| Terminal minimize control (`--color-terminal-control-minimize`) | `#eab308` | Decorative yellow window control in the home-page terminal. |
+| Terminal maximize control (`--color-terminal-control-maximize`) | `#22c55e` | Decorative green window control in the home-page terminal. |
 | Focus outline | `#ffffff` | Keyboard focus indicators. |
 
-The palette is dark and greyscale; there is no colored accent token. The original [project plan](./planning/PROJECT-PLAN.md) describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The unused `src/assets/LS_logo.svg` contains its own color and does not currently contribute to the rendered palette.
+The palette is dark and greyscale; there is no colored accent token. The original [project plan](./planning/PROJECT-PLAN.md) describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The ivory `src/assets/LS_logo.svg` mark appears beside the name in the header and footer; it does not add a UI color token.
 
 ## Typography
 
@@ -73,7 +76,7 @@ The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoi
 - Borders are generally 1px and use the subtle, strong, or control border token above.
 - Chip radius: 4px.
 - Control and card radius: 6px.
-- Terminal radius: 8px.
+- Terminal radius: 12px.
 - Shadow token: `--shadow-none: none`; the interface does not use drop shadows for elevation.
 - Surface brightness changes (`#050505` → `#0f0f0f` → `#111111` → `#1a1a1a`) provide the implemented depth.
 
@@ -89,7 +92,7 @@ The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoi
 | Mobile navigation control | At least 44px tall, outlined and rounded; hover/open uses the raised surface, active uses the card surface. Escape closes it and returns focus to the trigger. |
 | Chips | Non-interactive showcase samples, 32px minimum height, raised surface, subtle border, 4px radius, mono metadata type. |
 | Empty-state card | Text-led card surface with a subtle border and 6px radius. It is not a clickable project card. |
-| Terminal window | Surface background, 1px stronger frame, 8px radius, titlebar separated by a subtle border. |
+| Terminal window | Card background, 1px stronger frame, 12px radius, titlebar with decorative red/yellow/green controls, `~/intro` label and read-only status. Monospaced commands use primary text; output uses secondary text. Typing pauses briefly at line breaks. |
 | Focus-visible | White outline with a 2px outline width and 3px offset on the app's shared focus treatment. It is distinct from hover styling. |
 
 Not all examples on the kitchen-sink page are used as live portfolio components: its chip and primary/disabled button samples document styles, while the real work page remains an empty state.

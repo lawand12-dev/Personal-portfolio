@@ -84,6 +84,9 @@
   --color-border-subtle: var(--hairline-dim);
   --color-border-strong: var(--hairline-light);
   --color-border-control: rgb(255 255 255 / 50%);
+  --color-terminal-control-close: #ef4444;
+  --color-terminal-control-minimize: #eab308;
+  --color-terminal-control-maximize: #22c55e;
   --color-action-primary: var(--accent);
   --color-action-primary-hover: var(--accent-hover);
   --color-focus-ring: var(--accent);
@@ -128,7 +131,7 @@
   --radius-chip: 0.25rem;
   --radius-control: 0.375rem;
   --radius-card: 0.375rem;
-  --radius-terminal: 0.5rem;
+  --radius-terminal: 0.75rem;
   --shadow-none: none;
 
   /* Motion */
