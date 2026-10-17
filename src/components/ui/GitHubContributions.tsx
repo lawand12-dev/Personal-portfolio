@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-import ContributionSkyline, {
-  type ContributionDay,
-} from '../../contibution'
+import ContributionSkyline from '../../contibution'
+import type { ContributionDay } from '../../contribution-utils'
 
 type LoadState =
   | { status: 'loading' }

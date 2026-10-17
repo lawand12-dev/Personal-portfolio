@@ -1,5 +1,5 @@
-import { Mail } from 'lucide-react'
 import githubIcon from '../../assets/GitHub.svg'
+import gmailIcon from '../../assets/Gmail.svg'
 import linkedinLogo from '../../assets/Linkedin.svg'
 import xIcon from '../../assets/X.svg'
 
@@ -35,7 +35,12 @@ function SocialLinks() {
         href="mailto:lawandsoran110@gmail.com"
         rel="noreferrer"
       >
-        <Mail aria-hidden="true" className="portfolio-social-icon" />
+        <img
+          alt=""
+          aria-hidden="true"
+          className="portfolio-social-icon"
+          src={gmailIcon}
+        />
       </a>
       {socialLinks.map(({ className, href, icon, label }) => (
         <a

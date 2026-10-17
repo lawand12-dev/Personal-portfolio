@@ -9,7 +9,7 @@ This inventory covers components under `src/components/`. Page-level components 
 | `PageShell` — `src/components/layout/PageShell.tsx` | Shared site frame. Renders skip link, `NavBar`, a focusable `<main>`, route transition, and `Footer`. Tracks route changes and directs focus to the main landmark when navigation changes. | `children: ReactNode` | Home, work, writing, about, and not-found routes. |
 | `NavBar` — `src/components/layout/NavBar.tsx` | Logo/name home link and route navigation. Uses Base UI `Collapsible` for the mobile disclosure below the responsive breakpoint; closes on link selection or Escape, and restores focus to the trigger on Escape. | No public props | `PageShell`. |
 | `Footer` — `src/components/layout/Footer.tsx` | Shared closing area with identity and icon-based contact/social links. Links are ordinary anchors. | No public props | `PageShell`. |
-| `SocialLinks` — `src/components/layout/SocialLinks.tsx` | Reusable, accessible Gmail, GitHub, LinkedIn, and X links using Lucide and the supplied SVG assets. | No public props | Home contact section and `Footer`. |
+| `SocialLinks` — `src/components/layout/SocialLinks.tsx` | Reusable, accessible Gmail, GitHub, LinkedIn, and X links using the supplied SVG assets. | No public props | Home contact section and `Footer`. |
 
 The mobile navigation is a non-modal disclosure, not a dialog or focus-trapping drawer. The older plan calls it a drawer in places, but the current implementation does not trap focus.
 

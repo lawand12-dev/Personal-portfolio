@@ -76,15 +76,12 @@
 .portfolio-social-icon {
   width: var(--space-6);
   height: var(--space-6);
+  object-fit: contain;
 }
 
 .portfolio-social-icon--github,
 .portfolio-social-icon--x {
   filter: invert(1);
-}
-
-.portfolio-social-icon--linkedin {
-  object-fit: contain;
 }
 
 .portfolio-nav-link[aria-current="page"] {
