@@ -2,7 +2,7 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function WorkIndexPage() {
   usePageMetadata(
-    'Work — Lawand Soran — Junior Frontend Developer',
+    'Work — Lawand Soran — Frontend Developer',
     'Explore frontend projects by Lawand Soran, built while learning React, TypeScript, and accessible interface development.',
   )
 

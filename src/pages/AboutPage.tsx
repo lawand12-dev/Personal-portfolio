@@ -3,7 +3,7 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function AboutPage() {
   usePageMetadata(
-    'About — Lawand Soran — Junior Frontend Developer',
+    'About — Lawand Soran — Frontend Developer',
     'Learn about Lawand Soran, a self-directed learner interested in frontend development, technology, and business.',
   )
 

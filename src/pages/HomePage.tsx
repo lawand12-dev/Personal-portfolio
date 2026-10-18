@@ -1,42 +1,42 @@
-import SocialLinks from '../components/layout/SocialLinks'
-import ActionLink from '../components/ui/ActionLink'
-import GitHubContributions from '../components/ui/GitHubContributions'
-import Reveal from '../components/ui/Reveal'
-import TerminalWindow from '../components/ui/TerminalWindow'
-import usePageMetadata from '../hooks/usePageMetadata'
+import SocialLinks from "../components/layout/SocialLinks";
+import ActionLink from "../components/ui/ActionLink";
+import GitHubContributions from "../components/ui/GitHubContributions";
+import Reveal from "../components/ui/Reveal";
+import TerminalWindow from "../components/ui/TerminalWindow";
+import usePageMetadata from "../hooks/usePageMetadata";
 
 const skillGroups = [
   {
-    label: 'languages/',
-    items: ['TypeScript', 'JavaScript', 'HTML', 'CSS'],
+    label: "languages/",
+    items: ["TypeScript", "JavaScript", "HTML", "CSS"],
   },
   {
-    label: 'frameworks/',
-    items: ['React', 'Vite', 'React Router'],
+    label: "frameworks/",
+    items: ["React", "Vite", "React Router"],
   },
   {
-    label: 'styling/',
-    items: ['Tailwind CSS', 'shadcn/ui', 'Base UI'],
+    label: "styling/",
+    items: ["Tailwind CSS", "shadcn/ui", "Base UI"],
   },
   {
-    label: 'animation/',
-    items: ['Motion for React', 'CSS transitions'],
+    label: "animation/",
+    items: ["Motion for React", "CSS transitions"],
   },
   {
-    label: 'tools/',
-    items: ['Git', 'GitHub', 'GitHub Actions', 'Figma'],
+    label: "tools/",
+    items: ["Git", "GitHub", "GitHub Actions", "Figma"],
   },
   {
-    label: 'learning/',
-    items: ['Next.js', 'Testing Library', 'Playwright'],
+    label: "learning/",
+    items: ["Next.js", "Testing Library", "Playwright"],
   },
-]
+];
 
 function HomePage() {
   usePageMetadata(
-    'Lawand Soran — Junior Frontend Developer',
-    'Lawand Soran is a junior frontend developer building accessible interfaces with React and TypeScript. Explore his work and get in touch.',
-  )
+    "Lawand Soran — Frontend Developer",
+    "Lawand Soran is a frontend developer building accessible interfaces with React and TypeScript. Explore his work and get in touch.",
+  );
 
   return (
     <>
@@ -55,7 +55,7 @@ function HomePage() {
             Lawand Soran
           </h1>
           <p className="portfolio-role mt-4 max-w-reading text-subheading leading-heading text-secondary">
-            Junior frontend developer building accessible interfaces with React
+            Frontend developer building accessible interfaces with React
             and TypeScript.
           </p>
           <div className="portfolio-actions mt-8 flex flex-wrap gap-3">
@@ -136,7 +136,7 @@ function HomePage() {
             {skillGroups.map(({ label, items }) => (
               <div className="portfolio-skill-row" key={label}>
                 <dt className="font-mono text-label text-secondary">{label}</dt>
-                <dd>{items.join(' · ')}</dd>
+                <dd>{items.join(" · ")}</dd>
               </div>
             ))}
           </dl>
@@ -194,7 +194,7 @@ function HomePage() {
             label="~/contact"
             title="Get in touch"
           >
-            Looking to discuss a junior frontend opportunity? Email is the best
+            Looking to discuss a frontend opportunity? Email is the best
             way to reach me.
           </SectionHeading>
           <div className="portfolio-contact-actions mt-8 flex flex-wrap items-center gap-6">
@@ -209,7 +209,7 @@ function HomePage() {
         </section>
       </Reveal>
     </>
-  )
+  );
 }
 
 function SectionHeading({
@@ -218,10 +218,10 @@ function SectionHeading({
   label,
   title,
 }: {
-  children: string
-  id: string
-  label: string
-  title: string
+  children: string;
+  id: string;
+  label: string;
+  title: string;
 }) {
   return (
     <div className="portfolio-section-heading">
@@ -229,7 +229,10 @@ function SectionHeading({
         {label}
       </p>
       <div>
-        <h2 className="portfolio-section-title font-mono text-heading leading-heading" id={id}>
+        <h2
+          className="portfolio-section-title font-mono text-heading leading-heading"
+          id={id}
+        >
           {title}
         </h2>
         <p className="portfolio-body mt-4 max-w-reading text-secondary">
@@ -237,7 +240,7 @@ function SectionHeading({
         </p>
       </div>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

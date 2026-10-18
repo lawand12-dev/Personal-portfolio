@@ -2,7 +2,7 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function WritingIndexPage() {
   usePageMetadata(
-    'Writing — Lawand Soran — Junior Frontend Developer',
+    'Writing — Lawand Soran — Frontend Developer',
     'Notes by Lawand Soran on frontend development, learning by building, and the ideas behind the work.',
   )
 

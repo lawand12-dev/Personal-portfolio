@@ -20,7 +20,7 @@
 
 Effort estimates are planning estimates, not measured implementation times.
 
-| Priority / task | Why it matters for a junior frontend role | Likely code/docs touched | Effort | Blocks |
+| Priority / task | Why it matters for a frontend role | Likely code/docs touched | Effort | Blocks |
 | --- | --- | --- | --- | --- |
 | 1. Choose and build at least two real, presentable projects; record genuine problem, implementation, and outcome details. | Recruiters need evidence of working frontend skills. The portfolio brief identifies absent projects as its largest effectiveness risk. | New project content; `src/pages/WorkIndexPage.tsx`; `src/pages/HomePage.tsx`; potentially new project-detail route/components and project assets. | High; multiple focused sessions | Blocks a credible populated work page and project case studies. |
 | 2. Finalize and verify professional content: role statement, skills, biography, links, and resume material. | Accurate, specific claims and a reachable resume help recruiters evaluate the candidate. Existing copy and skill claims should match demonstrable experience. | `docs/planning/BRAND.md`, `docs/planning/CONTENT-PLAN.md`, `src/pages/HomePage.tsx`, `src/pages/AboutPage.tsx`, future resume route or PDF in `public/`. | Medium | Resume navigation/page should wait for actual resume content; public content should be reviewed before launch. |

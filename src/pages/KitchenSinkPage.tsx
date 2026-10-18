@@ -229,9 +229,9 @@ function KitchenSinkPage() {
             </div>
             <div className="terminal-content">
               <p><span className="terminal-prompt">$</span> whoami</p>
-              <p className="terminal-output">Junior frontend developer — React · TypeScript</p>
+              <p className="terminal-output">Frontend developer — React · TypeScript · Motion</p>
               <p><span className="terminal-prompt">$</span> cat goals.md</p>
-              <p className="terminal-output">Seeking a junior frontend role. Learning by building.</p>
+              <p className="terminal-output">Building fast, accessible interfaces. Open to frontend roles and internships.</p>
             </div>
           </div>
           <p className="state-caption">
