@@ -4,6 +4,7 @@ This documentation set describes the portfolio's implemented architecture, visua
 
 | Document | Covers |
 | --- | --- |
+| [PROJECT-GUIDE.md](./PROJECT-GUIDE.md) | Complete developer manual: system workflows, 3D skyline math, how to add projects & resume, deployment guide, and next steps checklist. |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | Stack, project structure, routing, content and style flow, and documented architectural decisions. |
 | [DESIGN-SYSTEM.md](./DESIGN-SYSTEM.md) | Implemented colors, typography, layout tokens, responsive behavior, component styling, and theme behavior. |
 | [COMPONENTS.md](./COMPONENTS.md) | Shared components, route-level pages, props, usage, and placement patterns. |

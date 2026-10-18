@@ -4,7 +4,9 @@
 
 | Content | Current source | Current status |
 | --- | --- | --- |
-| Name, role statement, home copy, section copy, skills, and social URLs | `src/pages/HomePage.tsx` | Static strings and local arrays in the page component. |
+| Name, role statement, home copy, section copy, skills, and calls to action | `src/pages/HomePage.tsx` | Static strings and local arrays in the page component. |
+| Contact & social links (Gmail, GitHub, LinkedIn, X) | `src/components/layout/SocialLinks.tsx` | Static profile URLs and `mailto:` link with SVG icons. |
+| GitHub contributions data | `api/contributions.ts` (`/api/contributions`) | Serverless GraphQL endpoint fetching the last 371 days of live GitHub activity, cached for 1 hour. |
 | Biography | `src/pages/AboutPage.tsx` | Static copy. |
 | Work index | `src/pages/WorkIndexPage.tsx` | Empty state; no project data or case studies. |
 | Writing index | `src/pages/WritingIndexPage.tsx` | Empty state; no posts or MDX renderer. |
@@ -17,7 +19,8 @@ There is no runtime content directory, project catalog, blog-post schema, loader
 
 ## Data shapes that exist
 
-The home page contains a `skillGroups` array with group labels and arrays of skill-name strings. It is inferred locally by TypeScript and is not exported as a reusable model. Its effective shape is:
+### Skills
+The home page contains a `skillGroups` array with group labels and arrays of skill-name strings:
 
 ```ts
 type SkillGroup = {
@@ -26,7 +29,30 @@ type SkillGroup = {
 };
 ```
 
-This describes current home-page data only; it is not a project-wide content schema. Other prose and social-link values are similarly local constants or JSX.
+### GitHub Contributions
+The contribution calendar consumed by `src/components/ui/GitHubContributions.tsx` and computed in `src/contribution-utils.ts`:
+
+```ts
+type ContributionDay = {
+  date: string; // "YYYY-MM-DD"
+  count: number;
+};
+
+type Streak = {
+  days: number;
+  start: string | null;
+  end: string | null;
+};
+
+type ContributionStats = {
+  total: number;
+  first: string | null;
+  last: string | null;
+  busiest: { count: number; date: string | null };
+  longest: Streak;
+  current: Streak;
+};
+```
 
 ## Projects and articles: current process and future data examples
 

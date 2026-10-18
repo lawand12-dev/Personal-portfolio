@@ -9,18 +9,19 @@ This inventory covers components under `src/components/`. Page-level components 
 | `PageShell` — `src/components/layout/PageShell.tsx` | Shared site frame. Renders skip link, `NavBar`, a focusable `<main>`, route transition, and `Footer`. Tracks route changes and directs focus to the main landmark when navigation changes. | `children: ReactNode` | Home, work, writing, about, and not-found routes. |
 | `NavBar` — `src/components/layout/NavBar.tsx` | Logo/name home link and route navigation. Uses Base UI `Collapsible` for the mobile disclosure below the responsive breakpoint; closes on link selection or Escape, and restores focus to the trigger on Escape. | No public props | `PageShell`. |
 | `Footer` — `src/components/layout/Footer.tsx` | Shared closing area with identity and icon-based contact/social links. Links are ordinary anchors. | No public props | `PageShell`. |
-| `SocialLinks` — `src/components/layout/SocialLinks.tsx` | Reusable, accessible Gmail, GitHub, LinkedIn, and X links using the supplied SVG assets. | No public props | Home contact section and `Footer`. |
+| `SocialLinks` — `src/components/layout/SocialLinks.tsx` | Reusable, accessible contact and social navigation links (Gmail `mailto:`, GitHub, LinkedIn, and X) using dedicated SVG assets. | No public props | Home contact section and `Footer`. |
 
-The mobile navigation is a non-modal disclosure, not a dialog or focus-trapping drawer. The older plan calls it a drawer in places, but the current implementation does not trap focus.
+The mobile navigation is a non-modal disclosure powered by `@base-ui/react` `Collapsible`, not a dialog or focus-trapping drawer. The older plan calls it a drawer in places, but the current implementation does not trap focus.
 
-## UI
+## UI and visualization
 
 | Component | Purpose and notable behavior | Props | Used by |
 | --- | --- | --- | --- |
 | `ActionLink` — `src/components/ui/ActionLink.tsx` | Router link styled as an action. Supports `primary` and `secondary` variants; secondary is the default. It remains a navigation link rather than a `<button>`. | `to: string`, `children: ReactNode`, optional `variant: "primary" \| "secondary"` | Home page calls to action and other in-app action links. |
 | `Reveal` — `src/components/ui/Reveal.tsx` | Motion wrapper that reveals content as it enters the viewport. Accepts an optional class and delay; uses a one-time viewport trigger. | `children: ReactNode`, optional `className?: string`, optional `delay?: number` (seconds as passed to Motion) | Home page sections/blocks. |
 | `TerminalWindow` — `src/components/ui/TerminalWindow.tsx` | Displays the terminal-style introduction transcript in a window with decorative red/yellow/green controls, a title, read-only status, and differentiated command/output text. Types characters on an interval unless reduced motion is requested. The complete transcript is available as static accessible text; a CSS cursor blinks alongside the animated text. | No public props | Home hero. |
-| `GitHubContributions` — `src/components/ui/GitHubContributions.tsx` | Loads daily counts from `/api/contributions`, shows loading and recoverable error states, and passes real data to the existing contribution visualization without allowing its demo-data fallback. | No public props | Home page contributions section. |
+| `GitHubContributions` — `src/components/ui/GitHubContributions.tsx` | Loads daily counts from `/api/contributions`, shows loading and recoverable error states, and passes real data to `ContributionSkyline` without allowing demo-data fallback. | No public props | Home page contributions section. |
+| `ContributionSkyline` — `src/contibution.tsx` (supported by `src/contribution-utils.ts`) | Interactive HTML5 Canvas visualization presenting a full year of activity. Folds between a flat 2D heatmap and a 3D isometric skyline with wave elevation morphing, interactive camera orbit (drag to rotate, double click to reset), keyboard arrow grid navigation, tooltip inspection, and multi-palette color theme support. | `data?: ContributionDay[]`, `endDate?: string \| Date`, `view?: "2d" \| "3d"`, `defaultView?: "2d" \| "3d"`, `palette?: PaletteInput`, `orbit?: boolean`, `showStats?: boolean`, `showLegend?: boolean`, `showToggle?: boolean`, `heightScale?: number`, etc. | `GitHubContributions.tsx`. |
 
 ## Pages and page-local UI
 
@@ -36,6 +37,16 @@ These are route-level components in `src/pages/`, not shared components in `src/
 | `KitchenSinkPage` — `src/pages/KitchenSinkPage.tsx` | Standalone development showcase of tokens, typography, links/buttons, navigation examples, empty states, and terminal treatment. Not wrapped in `PageShell`. |
 
 `src/pages/KitchenSinkPage.css` defines sample-specific styles. Its loading spinner is only a showcase state, not a loading indicator used by the site's static routes.
+
+## SVG Assets
+
+| Asset | Source | Usage |
+| --- | --- | --- |
+| `Gmail.svg` | `src/assets/Gmail.svg` | Distinctive red Gmail icon rendered in `SocialLinks.tsx` for the email contact action. |
+| `GitHub.svg` | `src/assets/GitHub.svg` | Clean GitHub mark rendered in `SocialLinks.tsx`. |
+| `Linkedin.svg` | `src/assets/Linkedin.svg` | Blue LinkedIn mark rendered in `SocialLinks.tsx`. |
+| `X.svg` | `src/assets/X.svg` | White X (Twitter) mark rendered in `SocialLinks.tsx`. |
+| `LS_logo.svg` | `src/assets/LS_logo.svg` | Ivory monogram mark representing Lawand Soran. |
 
 ## Reuse and placement
 

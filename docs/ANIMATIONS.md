@@ -9,6 +9,8 @@ The current implementation is intentionally restrained. The original project bri
 | Scroll reveal | Wrapped content fades in and moves upward 12px when entering the viewport; each reveal runs once. The `delay` prop can stagger items. | Motion `whileInView`, `opacity` and `y`; 400ms with ease-out; default delay 0. | `src/components/ui/Reveal.tsx` |
 | Route transition | On route changes, the outgoing page fades and moves slightly upward; the new page fades in and moves from `y: 8` to rest. The shell also focuses the main landmark after route change. | Motion opacity/transform; exit 150ms ease-in, entry 240ms ease-out. | `src/components/layout/PageShell.tsx` |
 | Navigation disclosure | Mobile menu appears/disappears when the menu button is toggled; links close it. Escape closes the menu and returns focus. | Base UI `Collapsible` with controlled React state; no animation. | `src/components/layout/NavBar.tsx` |
+| Contribution wave morph | 2D heatmap morphs into a 3D isometric skyline (and vice-versa). Bars rise in a progressive wave sweeping from oldest week to newest week as the camera tilts. | Canvas `requestAnimationFrame`, `easeOutCubic` / `easeInOutCubic`, wave delay offset per column/row (`riseAt`). Duration default 750ms. | `src/contibution.tsx`, `src/contribution-utils.ts` |
+| Contribution 3D orbit | In 3D view, dragging on canvas rotates camera yaw (8° to 82°) and elevation (18° to 62°); double-clicking smoothly resets to default isometric angle. | Canvas pointer drag listeners with delta tracking and clamped spherical camera projection. | `src/contibution.tsx`, `src/contribution-utils.ts` |
 | Action-link color feedback | Primary/secondary action background and border colors change on hover/active. | CSS color/border transitions, 150ms, ease-out. No press translation is applied to portfolio action links. | `src/styles/Portfolio.css` |
 | Navigation hover/active | Text and underline treatment changes on hover/active. | CSS state selectors; immediate, with no transition declared for portfolio navigation. | `src/styles/Portfolio.css` |
 | Showcase button states | Sample action buttons brighten or change surface on hover and move down 1px while pressed. | CSS color/border/transform transitions, 150ms, ease-out. | `src/pages/KitchenSinkPage.css` |
@@ -23,6 +25,7 @@ The actual implementation does **not** include the planned project-card lift, fr
 - `TerminalWindow` uses Motion's reduced-motion preference and presents the complete transcript immediately rather than typing; the cursor animation is disabled.
 - `Reveal` checks the reduced-motion preference and avoids its entrance movement/hidden initial state when reduction is requested.
 - `PageShell` disables route animation when reduced motion is requested.
+- `ContributionSkyline` respects user preference and avoids disorienting motion; 2D/3D state transitions snap directly without prolonged wave delays.
 - Global CSS uses `@media (prefers-reduced-motion: reduce)` to switch smooth scrolling off and set CSS animation/transition durations to `0.01ms` with a single iteration.
 - The kitchen-sink spinner is stopped under reduced motion. Its arrow sample also does not translate.
 

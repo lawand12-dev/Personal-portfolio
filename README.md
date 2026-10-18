@@ -47,8 +47,10 @@ The home, work, writing, about, and not-found routes are implemented. Work and w
 
 ## Documentation
 
-- [Documentation index](./docs/README.md) — implementation guides and planning documents.
+- [Project & Developer Guide](./docs/PROJECT-GUIDE.md) — complete developer manual, how-to guides (adding projects/resume), and next steps.
+- [Documentation index](./docs/README.md) — index of implementation guides and planning documents.
 - [Architecture](./docs/ARCHITECTURE.md) — stack, routes, and source structure.
 - [Design system](./docs/DESIGN-SYSTEM.md) — implemented visual tokens and responsive behavior.
-- [Components](./docs/COMPONENTS.md) and [animations](./docs/ANIMATIONS.md) — reusable UI and interaction behavior.
+- [Components](./docs/COMPONENTS.md) and [animations](./docs/ANIMATIONS.md) — reusable UI, 3D canvas visualization, and interaction behavior.
+- [Roadmap](./docs/ROADMAP.md) — status snapshot, priority tasks, and launch dependencies.
 - [Planning documents](./docs/planning/README.md) — brand, content plan, visual direction, wireframes, and original project brief.

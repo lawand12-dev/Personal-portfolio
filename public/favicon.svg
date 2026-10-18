@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">LS monogram favicon</title>
+  <desc id="desc">Minimal elegant ivory LS lettermark on a dark rounded background.</desc>
+  <rect width="1024" height="1024" rx="224" fill="#050505"/>
+  <g fill="#F4EFE6" stroke="#F4EFE6" stroke-width="1.5" stroke-linejoin="round">
+    <text x="315" y="645" font-family="Bodoni 72, Didot, 'Times New Roman', serif" font-size="510" font-weight="400" letter-spacing="-34">L</text>
+    <text x="420" y="725" font-family="Bodoni 72, Didot, 'Times New Roman', serif" font-size="510" font-weight="400" letter-spacing="-28">S</text>
+  </g>
+</svg>
+

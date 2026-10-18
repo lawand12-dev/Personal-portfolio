@@ -24,7 +24,12 @@ This document describes values implemented in `src/styles/index.css`, `src/style
 | Terminal maximize control (`--color-terminal-control-maximize`) | `#22c55e` | Decorative green window control in the home-page terminal. |
 | Focus outline | `#ffffff` | Keyboard focus indicators. |
 
-The palette is dark and greyscale; there is no colored accent token. The original [project plan](./planning/PROJECT-PLAN.md) describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The ivory `src/assets/LS_logo.svg` mark appears beside the name in the header and footer; it does not add a UI color token.
+The palette is dark and greyscale; there is no colored accent token in the core UI frame. The original [project plan](./planning/PROJECT-PLAN.md) describes muted text as `#6b7280`; the active stylesheet uses `#8a8a8a`. The ivory `src/assets/LS_logo.svg` mark appears beside the name in the header and footer.
+
+The GitHub contribution graph introduces localized activity palettes (`src/contribution-utils.ts`):
+- `github` (default): Levels 1–4 dark greens (`#0e4429`, `#006d32`, `#26a641`, `#39d353`).
+- Additional presets available for themes: `halloween`, `ocean`, `ember`, `grape`, `mono`.
+- Brand SVG icons in `src/assets/` (`Gmail.svg`, `GitHub.svg`, `Linkedin.svg`, `X.svg`) provide recognizable social identities with a 20×20px bounding box and hover brightness transitions.
 
 ## Typography
 
@@ -93,6 +98,8 @@ The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoi
 | Chips | Non-interactive showcase samples, 32px minimum height, raised surface, subtle border, 4px radius, mono metadata type. |
 | Empty-state card | Text-led card surface with a subtle border and 6px radius. It is not a clickable project card. |
 | Terminal window | Card background, 1px stronger frame, 12px radius, titlebar with decorative red/yellow/green controls, `~/intro` label and read-only status. Monospaced commands use primary text; output uses secondary text. Typing pauses briefly at line breaks. |
+| Social links | Inline SVG icons (20×20px) wrapped in accessible touch targets with `gap-4`. Hover boosts icon brightness; focus-visible applies the white outline ring. |
+| Contribution skyline | Interactive Canvas with responsive wrapper, 2D/3D toggle, orbit cursor (`grab` / `grabbing`), legend level hover highlights, and day tooltip overlays with date and activity counts. |
 | Focus-visible | White outline with a 2px outline width and 3px offset on the app's shared focus treatment. It is distinct from hover styling. |
 
 Not all examples on the kitchen-sink page are used as live portfolio components: its chip and primary/disabled button samples document styles, while the real work page remains an empty state.

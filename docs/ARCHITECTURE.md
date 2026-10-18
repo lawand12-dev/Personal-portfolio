@@ -13,6 +13,7 @@ Versions below are the dependency ranges declared in `package.json`; `package-lo
 | `react`, `react-dom` | React UI and browser rendering. |
 | `react-router` | Browser routing, route links, active navigation, and lazy route elements. |
 | `typescript` | Type checking for the application and tooling configuration. |
+| `@base-ui/react` | Accessible unstyled UI primitive; provides `Collapsible` for the zero-CLS mobile navigation disclosure. |
 | `@vercel/node` | Request and response types for the server-side GitHub contributions function. |
 | `vite` | Development server, bundler, and static production build. |
 | `@vitejs/plugin-react` | React support in the Vite build. |
@@ -23,13 +24,15 @@ Versions below are the dependency ranges declared in `package.json`; `package-lo
 | `@fontsource/newsreader` | Self-hosted Newsreader font files for italic editorial emphasis. |
 | `@mdx-js/react`, `@mdx-js/rollup` | Installed MDX packages; no MDX Vite plugin configuration, MDX files, or runtime use currently exists. |
 | `lucide-react` | Installed icon package; no current source usage was found. |
+| `vitest`, `jsdom` | Testing framework and DOM environment (installed as devDependencies; test script can be configured). |
+| `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event` | Testing utilities for React component and interaction verification. |
 | `eslint`, `@eslint/js`, `typescript-eslint` | ESLint and TypeScript lint configuration. |
 | `eslint-plugin-react-hooks` | React Hooks lint rules. |
 | `eslint-plugin-react-refresh` | React Fast Refresh lint rules. |
 | `globals` | Global identifiers for ESLint environments. |
 | `@types/node`, `@types/react`, `@types/react-dom` | Type declarations for Node tooling and React. |
 
-No test framework or test files are currently present. The package scripts are `dev` (Vite), `build` (`tsc -b && vite build`), `lint` (`eslint .`), and `preview` (Vite preview).
+Vitest and React Testing Library are installed as devDependencies, but test files and an npm `test` script are not yet wired up. The active package scripts are `dev` (Vite), `build` (`tsc -b && vite build`), `lint` (`eslint .`), and `preview` (Vite preview).
 
 ## Directory and file map
 
@@ -44,19 +47,21 @@ No test framework or test files are currently present. The package scripts are `
 | `api/contributions.ts` | Vercel serverless function that fetches and caches the GitHub contribution calendar. |
 | `src/main.tsx` | Creates the React root, imports global styles, and mounts `App`. |
 | `src/App.tsx` | Declares the router, route components, and standalone kitchen-sink route. |
-| `src/components/layout/` | Shared page shell, site navigation, and footer. |
-| `src/components/ui/` | Reusable action link, scroll reveal, and terminal window. |
+| `src/components/layout/` | Shared page shell, site navigation, footer, and `SocialLinks`. |
+| `src/components/ui/` | Reusable action link, scroll reveal, terminal window, and `GitHubContributions`. |
+| `src/contibution.tsx` | Interactive 2D heatmap and 3D isometric canvas visualization component (`ContributionSkyline`). |
+| `src/contribution-utils.ts` | Mathematical projection, camera angles, color palettes, grid builder, and streak statistics for contributions. |
+| `src/assets/` | SVG assets for Gmail, GitHub, LinkedIn, X, and the brand mark (`LS_logo.svg`). |
 | `src/hooks/usePageMetadata.ts` | Updates title and selected metadata tags after client-side navigation. |
 | `src/pages/` | Home, work, writing, about, not-found, and developer showcase pages, with page-specific styles. |
 | `src/styles/index.css` | CSS imports, fonts, CSS theme tokens, global reset, and shared base styles. |
 | `src/styles/Portfolio.css` | Main portfolio layout, component styling, and responsive rules. |
 | `src/DesignTokens.ts` | Typed names for CSS variables, consumed by the kitchen-sink page. |
-| `src/assets/LS_logo.svg` | Logo asset; it is not currently imported by the application. |
 | `src/index.css`, `src/App.css` | Present but empty; they are not the active style entry points. |
 | `README.md` | Repository overview and local setup instructions. |
 | `docs/` | Implementation documentation, indexed in `docs/README.md`. |
+| `docs/PROJECT-GUIDE.md` | Developer guide, architecture flow, feature guides (projects, resume), and next steps checklist. |
 | `docs/planning/` | Brand, content plan, visual direction, wireframes, and original project brief. |
-| `docs/` | This codebase documentation set. |
 
 There is no `src/content/`, project-data module, blog directory, or resume asset in the current tree.
 
@@ -68,21 +73,22 @@ There is no `src/content/`, project-data module, blog directory, or resume asset
 | --- | --- | --- |
 | `/` | `HomePage` | `PageShell` |
 | `/work` | `WorkIndexPage` | `PageShell` |
-| `/writing` | `WritingIndexPage` | `PageShell` |
+| `/writing` | `WritingIndexPage` (loaded eagerly for zero CLS) | `PageShell` |
 | `/about` | `AboutPage` | `PageShell` |
 | `*` | `NotFoundPage` | `PageShell` |
 | `/dev/kitchen-sink` | `KitchenSinkPage` | Standalone showcase, outside `PageShell` |
 
-Some page modules are loaded with `React.lazy` and rendered through `Suspense`. The shared `PageShell` composes the sticky `NavBar`, skip link, focusable `<main>`, route transition, and `Footer`; page components supply the content inside that frame. The not-found page also uses the shared shell. The kitchen-sink route deliberately has its own header/navigation and styles.
+Some page modules are loaded with `React.lazy` and rendered through `Suspense`. `WritingIndexPage` is loaded eagerly to prevent mobile Cumulative Layout Shift (CLS). The shared `PageShell` composes the sticky `NavBar`, skip link, focusable `<main>`, route transition, and `Footer`; page components supply the content inside that frame. The not-found page also uses the shared shell. The kitchen-sink route deliberately has its own header/navigation and styles.
 
-Navigation uses ordinary router links rather than terminal commands. The mobile menu is a non-modal disclosure. It can be toggled by its button, closes when a navigation link is selected, and supports Escape returning focus to the trigger.
+Navigation uses ordinary router links rather than terminal commands. The mobile menu is a non-modal disclosure powered by `@base-ui/react` `Collapsible`. It can be toggled by its button, closes when a navigation link is selected, and supports Escape returning focus to the trigger.
 
 ## Content flow
 
 There is no CMS or general content pipeline. Page copy is authored directly in page components. The home-page GitHub contribution graph is the exception: `api/contributions.ts` queries GitHub's GraphQL API server-side, and the client loads daily counts from `/api/contributions`. The `GITHUB_TOKEN` secret is used only by that Vercel function and is not exposed to the browser.
 
-- Home sections, skill groups, and social links are in `src/pages/HomePage.tsx`.
-- GitHub activity rendering and loading/error states are in `src/components/ui/GitHubContributions.tsx`; the visualization is `src/contibution.tsx`.
+- Home sections, skill groups, and calls to action are in `src/pages/HomePage.tsx`.
+- GitHub activity rendering and loading/error states are in `src/components/ui/GitHubContributions.tsx`; the canvas visualization is `src/contibution.tsx` with mathematical/projection utilities in `src/contribution-utils.ts`.
+- Social profile links and Gmail mailto trigger are in `src/components/layout/SocialLinks.tsx` using SVGs from `src/assets/`.
 - Work and writing currently render empty states in `src/pages/WorkIndexPage.tsx` and `src/pages/WritingIndexPage.tsx`.
 - Biography text is in `src/pages/AboutPage.tsx`.
 - Terminal transcript lines are in `src/components/ui/TerminalWindow.tsx`.
