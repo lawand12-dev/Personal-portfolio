@@ -49,14 +49,14 @@ Vitest and React Testing Library are installed as devDependencies, but test file
 | `src/App.tsx` | Declares the router, route components, and standalone kitchen-sink route. |
 | `src/components/layout/` | Shared page shell, site navigation, footer, and `SocialLinks`. |
 | `src/components/ui/` | Reusable action link, scroll reveal, terminal window, and `GitHubContributions`. |
-| `src/contibution.tsx` | Interactive 2D heatmap and 3D isometric canvas visualization component (`ContributionSkyline`). |
+| `src/contribution.tsx` | Interactive 2D heatmap and 3D isometric canvas visualization component (`ContributionSkyline`). |
 | `src/contribution-utils.ts` | Mathematical projection, camera angles, color palettes, grid builder, and streak statistics for contributions. |
 | `src/assets/` | SVG assets for Gmail, GitHub, LinkedIn, X, and the brand mark (`LS_logo.svg`). |
 | `src/hooks/usePageMetadata.ts` | Updates title and selected metadata tags after client-side navigation. |
 | `src/pages/` | Home, work, writing, about, not-found, and developer showcase pages, with page-specific styles. |
 | `src/styles/index.css` | CSS imports, fonts, CSS theme tokens, global reset, and shared base styles. |
 | `src/styles/Portfolio.css` | Main portfolio layout, component styling, and responsive rules. |
-| `src/DesignTokens.ts` | Typed names for CSS variables, consumed by the kitchen-sink page. |
+| `src/pages/KitchenSinkPage.css` | Showcase-only layout for the development kitchen-sink route; shared type, action, empty-state, and terminal styles come from `src/styles/Portfolio.css`. |
 | `src/index.css`, `src/App.css` | Present but empty; they are not the active style entry points. |
 | `README.md` | Repository overview and local setup instructions. |
 | `docs/` | Implementation documentation, indexed in `docs/README.md`. |
@@ -87,7 +87,7 @@ Navigation uses ordinary router links rather than terminal commands. The mobile 
 There is no CMS or general content pipeline. Page copy is authored directly in page components. The home-page GitHub contribution graph is the exception: `api/contributions.ts` queries GitHub's GraphQL API server-side, and the client loads daily counts from `/api/contributions`. The `GITHUB_TOKEN` secret is used only by that Vercel function and is not exposed to the browser.
 
 - Home sections, skill groups, and calls to action are in `src/pages/HomePage.tsx`.
-- GitHub activity rendering and loading/error states are in `src/components/ui/GitHubContributions.tsx`; the canvas visualization is `src/contibution.tsx` with mathematical/projection utilities in `src/contribution-utils.ts`.
+- GitHub activity rendering and loading/error states are in `src/components/ui/GitHubContributions.tsx`; the canvas visualization is `src/contribution.tsx` with mathematical/projection utilities in `src/contribution-utils.ts`.
 - Social profile links and Gmail mailto trigger are in `src/components/layout/SocialLinks.tsx` using SVGs from `src/assets/`.
 - Work and writing currently render empty states in `src/pages/WorkIndexPage.tsx` and `src/pages/WritingIndexPage.tsx`.
 - Biography text is in `src/pages/AboutPage.tsx`.
@@ -101,7 +101,7 @@ The contribution endpoint uses a fixed GitHub profile, rejects non-GET requests,
 
 `src/styles/index.css` is the active global stylesheet imported by `src/main.tsx`. It declares the CSS-first theme, font faces via Fontsource imports, global styles, and shared tokens. `src/styles/Portfolio.css`, imported from `src/App.tsx`, consumes the tokens in component and layout selectors. Tailwind utilities are also used in JSX; Tailwind v4 is integrated with the Vite plugin and there is no standalone Tailwind config.
 
-`src/DesignTokens.ts` provides typed token identifiers for the kitchen-sink showcase; the CSS custom properties remain the actual token values. The detailed values and their present usage are in [DESIGN-SYSTEM.md](./DESIGN-SYSTEM.md).
+The CSS custom properties in `src/styles/index.css` are the single source of truth; the kitchen sink reads them at runtime with `var(--token)`, and `npm run check:design` (also part of `npm run lint`) guards the token surface and blocks duplicated component styles. The detailed values and their present usage are in [DESIGN-SYSTEM.md](./DESIGN-SYSTEM.md); the audit and fix record is in [DESIGN-AUDIT.md](./DESIGN-AUDIT.md).
 
 ## Animation organization
 

@@ -200,8 +200,6 @@ const CubeIcon = () => (
   </svg>
 );
 
-const MUTED = "var(--color-muted-foreground, #737373)";
-
 function Stat({
   label,
   value,
@@ -222,26 +220,21 @@ function Stat({
   if (align === "stack") {
     return (
       <div className="min-w-0">
-        <div className="text-[13px] leading-tight" style={{ color: MUTED }}>
-          {label}
-        </div>
+        <div className="text-label leading-tight text-secondary">{label}</div>
         <div className="mt-1 flex min-w-0 flex-wrap items-baseline gap-x-1.5">
           <span
-            className="font-semibold tabular-nums transition-colors duration-500 motion-reduce:transition-none"
+            className="font-semibold tabular-nums tracking-display-copy transition-colors duration-500 motion-reduce:transition-none"
             style={{
               color: accent,
               fontSize: size,
               lineHeight: 1,
-              letterSpacing: "-0.02em",
             }}
           >
             {value}
           </span>
-          <span className="text-[14px]">{unit}</span>
+          <span className="text-body">{unit}</span>
         </div>
-        <div className="mt-0.5 truncate text-[12px]" style={{ color: MUTED }}>
-          {sub}
-        </div>
+        <div className="mt-0.5 truncate text-meta text-secondary">{sub}</div>
       </div>
     );
   }
@@ -252,38 +245,29 @@ function Stat({
     >
       {align === "end" ? (
         <>
-          <div
-            className="text-right text-[13px] leading-tight"
-            style={{ color: MUTED }}
-          >
+          <div className="text-right text-label leading-tight text-secondary">
             {label}
           </div>
           <div />
         </>
       ) : (
-        <div
-          className="col-span-2 text-[13px] leading-tight"
-          style={{ color: MUTED }}
-        >
+        <div className="col-span-2 text-label leading-tight text-secondary">
           {label}
         </div>
       )}
       <div
-        className="text-right font-semibold tabular-nums transition-colors duration-500 motion-reduce:transition-none"
+        className="text-right font-semibold tabular-nums tracking-display-copy transition-colors duration-500 motion-reduce:transition-none"
         style={{
           color: accent,
           fontSize: size,
           lineHeight: 0.95,
-          letterSpacing: "-0.02em",
         }}
       >
         {value}
       </div>
       <div className="pb-[0.15em] leading-tight">
-        <div className="text-[15px]">{unit}</div>
-        <div className="whitespace-nowrap text-[13px]" style={{ color: MUTED }}>
-          {sub}
-        </div>
+        <div className="text-body">{unit}</div>
+        <div className="whitespace-nowrap text-meta text-secondary">{sub}</div>
       </div>
     </div>
   );
@@ -340,8 +324,8 @@ export default function ContributionSkyline({
     swatches: string[];
     accent: string;
   }>(() => {
-    const p = resolvePalette(palette, false);
-    return { dark: false, swatches: ["#ebedf0", ...p], accent: p[3] };
+    const p = resolvePalette(palette, true);
+    return { dark: true, swatches: ["#1f1f1f", ...p], accent: p[3] };
   });
   const [width, setWidth] = React.useState(0);
   const [active, setActive] = React.useState(-1);
@@ -462,7 +446,6 @@ export default function ContributionSkyline({
     if (!ctx) return;
 
     const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const darkMq = window.matchMedia("(prefers-color-scheme: dark)");
     let reduced = reduceMq.matches;
 
     // morph: t is linear time 0 (2D) → 1 (3D); the camera eases it, the bars wave it
@@ -1157,8 +1140,13 @@ export default function ContributionSkyline({
       io.observe(stage);
     } else enter();
 
+    let resizeRaf = 0;
     const ro = new ResizeObserver(() => {
-      if (Math.round(stage.clientWidth) !== W) relayout();
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = 0;
+        if (Math.round(stage.clientWidth) !== W) relayout();
+      });
     });
     ro.observe(stage);
 
@@ -1172,7 +1160,6 @@ export default function ContributionSkyline({
       kick();
     };
     reduceMq.addEventListener("change", onReduce);
-    darkMq.addEventListener("change", retheme);
 
     canvas.addEventListener("pointerdown", onDown);
     canvas.addEventListener("pointermove", onMove);
@@ -1202,11 +1189,11 @@ export default function ContributionSkyline({
 
     return () => {
       if (raf) cancelAnimationFrame(raf);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
       io?.disconnect();
       ro.disconnect();
       mo.disconnect();
       reduceMq.removeEventListener("change", onReduce);
-      darkMq.removeEventListener("change", retheme);
       canvas.removeEventListener("pointerdown", onDown);
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerup", onUp);
@@ -1287,16 +1274,12 @@ export default function ContributionSkyline({
     <section
       ref={rootRef}
       className={
-        "relative w-full rounded-xl border p-4 font-sans sm:p-5 " + className
+        "relative w-full rounded-card border border-line bg-card p-4 font-sans text-primary sm:p-5 " +
+        className
       }
-      style={{
-        background: "var(--color-background, #ffffff)",
-        color: "var(--color-foreground, #171717)",
-        borderColor: "var(--color-border, #e5e5e5)",
-      }}
     >
       <header className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <h3 className="m-0 text-[15px] font-normal leading-snug">
+        <h3 className="m-0 text-body font-normal leading-snug">
           {title ?? (
             <>
               <span className="font-semibold tabular-nums">
@@ -1310,14 +1293,12 @@ export default function ContributionSkyline({
           <div
             role="group"
             aria-label="Chart view"
-            className="relative inline-flex rounded-md border p-0.5"
-            style={{ borderColor: "var(--color-border, #e5e5e5)" }}
+            className="relative inline-flex rounded-control border border-line p-0.5"
           >
             <span
               aria-hidden="true"
-              className="absolute top-0.5 bottom-0.5 left-0.5 w-8 rounded transition-transform duration-500 motion-reduce:transition-none"
+              className="absolute top-0.5 bottom-0.5 left-0.5 w-8 rounded bg-primary transition-transform duration-500 motion-reduce:transition-none"
               style={{
-                background: "var(--color-foreground, #171717)",
                 transform: is3d ? "translateX(100%)" : "translateX(0)",
                 transitionTimingFunction: ease,
               }}
@@ -1330,12 +1311,10 @@ export default function ContributionSkyline({
                 aria-label={v === "2d" ? "Flat heat map" : "3D skyline"}
                 title={v === "2d" ? "Flat heat map" : "3D skyline"}
                 onClick={() => setView(v)}
-                className="relative z-10 grid h-7 w-8 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
-                style={{
-                  color:
-                    view === v ? "var(--color-background, #ffffff)" : MUTED,
-                  outlineColor: "var(--color-foreground, #171717)",
-                }}
+                className={
+                  "relative z-10 grid h-7 w-8 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:transition-none " +
+                  (view === v ? "text-page" : "text-secondary")
+                }
               >
                 {v === "2d" ? <GridIcon /> : <CubeIcon />}
               </button>
@@ -1344,17 +1323,13 @@ export default function ContributionSkyline({
         )}
       </header>
 
-      <div
-        className="relative rounded-lg border"
-        style={{ borderColor: "var(--color-border, #e5e5e5)" }}
-      >
+      <div className="relative rounded-control border border-line">
         <div className="relative px-3 pt-3 sm:px-4 sm:pt-4">
           <div
             ref={stageRef}
-            className="relative w-full overflow-hidden rounded-md outline-offset-4 has-[:focus-visible]:outline-2"
+            className="relative w-full overflow-hidden rounded-control outline-offset-4 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus"
             style={{
               height: 150,
-              outlineColor: "var(--color-foreground, #171717)",
             }}
           >
             <canvas
@@ -1371,9 +1346,8 @@ export default function ContributionSkyline({
                 (is3d ? "3D skyline" : "heat map") +
                 ". Use the arrow keys to read individual days."
               }
-              className="absolute top-0 left-0 block outline-none"
+              className="absolute top-0 left-0 block max-w-none outline-none"
               style={{
-                maxWidth: "none",
                 touchAction: is3d && orbit ? "pan-y" : "auto",
               }}
             />
@@ -1440,11 +1414,9 @@ export default function ContributionSkyline({
             ref={tipRef}
             role="tooltip"
             aria-hidden={active < 0}
-            className="pointer-events-none absolute top-3 left-3 z-20 whitespace-nowrap rounded-md px-2.5 py-1.5 text-[12px] leading-none shadow-lg transition-opacity duration-150 sm:top-4 sm:left-4 motion-reduce:transition-none"
+            className="pointer-events-none absolute top-3 left-3 z-20 whitespace-nowrap rounded-control border border-line-strong bg-primary px-2.5 py-1.5 text-meta leading-none text-page transition-opacity duration-150 sm:top-4 sm:left-4 motion-reduce:transition-none"
             style={{
               opacity: active >= 0 ? 1 : 0,
-              background: "var(--color-foreground, #171717)",
-              color: "var(--color-background, #ffffff)",
             }}
           >
             {active >= 0 && model.cells[active] ? (
@@ -1472,7 +1444,7 @@ export default function ContributionSkyline({
                 marginLeft: -5,
                 borderLeft: "5px solid transparent",
                 borderRight: "5px solid transparent",
-                borderTop: "5px solid var(--color-foreground, #171717)",
+                borderTop: "5px solid var(--color-text-primary)",
               }}
             />
           </div>
@@ -1506,8 +1478,7 @@ export default function ContributionSkyline({
         )}
 
         <div
-          className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 px-3 pt-3 pb-3 text-[12px] sm:px-4"
-          style={{ color: MUTED }}
+          className="flex flex-col items-start gap-2 px-3 pt-3 pb-3 text-meta text-secondary sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-4 sm:gap-y-2 sm:px-4"
         >
           {footer === undefined ? (
             <span className="relative grid flex-1">
@@ -1544,13 +1515,14 @@ export default function ContributionSkyline({
                   onFocus={() => setLegendLevel(i)}
                   onBlur={() => setLegendLevel(-1)}
                   onClick={() => setLegendLevel((l) => (l === i ? -1 : i))}
-                  className="h-[11px] w-[11px] cursor-pointer rounded-[2px] border-0 p-0 transition-[background-color,transform] duration-500 hover:scale-125 focus-visible:outline-2 focus-visible:outline-offset-1 motion-reduce:transition-none"
-                  style={{
-                    background: c,
-                    outlineColor: "var(--color-foreground, #171717)",
-                    boxShadow: "inset 0 0 0 1px rgba(127,127,127,0.12)",
-                  }}
-                />
+                  className="grid h-6 w-6 cursor-pointer place-items-center rounded-control border-0 bg-transparent p-0 transition-transform duration-500 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus motion-reduce:transition-none"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="h-[11px] w-[11px] rounded-[2px] border border-line-strong"
+                    style={{ background: c }}
+                  />
+                </button>
               ))}
               <span className="ml-0.5">More</span>
             </div>

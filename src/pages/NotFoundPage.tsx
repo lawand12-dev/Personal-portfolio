@@ -9,11 +9,9 @@ function NotFoundPage() {
   )
 
   return (
-    <section aria-labelledby="not-found-title" className="portfolio-page py-16 md:py-24">
-      <p className="portfolio-eyebrow font-mono text-meta text-secondary">
-        404 / Not found
-      </p>
-      <h1 className="portfolio-page-title mt-4 font-mono text-heading font-bold leading-heading" id="not-found-title">
+    <section aria-labelledby="not-found-title" className="portfolio-page">
+      <p className="portfolio-eyebrow">404 / Not found</p>
+      <h1 className="portfolio-section-title mt-4" id="not-found-title">
         This page isn&apos;t here.
       </h1>
       <Link className="portfolio-action portfolio-action--primary mt-8" to="/">

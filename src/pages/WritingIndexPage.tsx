@@ -7,21 +7,19 @@ function WritingIndexPage() {
   )
 
   return (
-    <section aria-labelledby="writing-title" className="portfolio-page py-16 md:py-24">
-      <p className="portfolio-eyebrow font-mono text-meta text-secondary">~/writing</p>
-      <h1 className="portfolio-page-title mt-4 font-mono text-display font-bold leading-display tracking-display-copy" id="writing-title">
+    <section aria-labelledby="writing-title" className="portfolio-page">
+      <p className="portfolio-eyebrow">~/writing</p>
+      <h1 className="portfolio-page-title mt-4" id="writing-title">
         Writing
       </h1>
-      <p className="portfolio-intro mt-4 max-w-reading text-subheading leading-heading text-secondary">
+      <p className="portfolio-intro mt-4 max-w-reading">
         Notes on frontend development, learning by building, and the ideas behind
         the work.
       </p>
-      <div className="portfolio-empty-state portfolio-empty-state--page mt-12 border border-line-strong bg-surface p-6 md:p-8">
+      <div className="portfolio-empty-state portfolio-empty-state--page mt-12">
         <div>
-          <h2 className="portfolio-subheading font-mono text-subheading">
-            No posts published yet
-          </h2>
-          <p className="portfolio-body mt-3 max-w-reading text-secondary">
+          <h2 className="portfolio-subheading">No posts published yet</h2>
+          <p className="portfolio-body mt-3 max-w-reading">
             I haven&apos;t published any posts yet. When I do, you&apos;ll find
             practical notes and reflections from my learning and projects here.
           </p>

@@ -21,7 +21,7 @@ The mobile navigation is a non-modal disclosure powered by `@base-ui/react` `Col
 | `Reveal` — `src/components/ui/Reveal.tsx` | Motion wrapper that reveals content as it enters the viewport. Accepts an optional class and delay; uses a one-time viewport trigger. | `children: ReactNode`, optional `className?: string`, optional `delay?: number` (seconds as passed to Motion) | Home page sections/blocks. |
 | `TerminalWindow` — `src/components/ui/TerminalWindow.tsx` | Displays the terminal-style introduction transcript in a window with decorative red/yellow/green controls, a title, read-only status, and differentiated command/output text. Types characters on an interval unless reduced motion is requested. The complete transcript is available as static accessible text; a CSS cursor blinks alongside the animated text. | No public props | Home hero. |
 | `GitHubContributions` — `src/components/ui/GitHubContributions.tsx` | Loads daily counts from `/api/contributions`, shows loading and recoverable error states, and passes real data to `ContributionSkyline` without allowing demo-data fallback. | No public props | Home page contributions section. |
-| `ContributionSkyline` — `src/contibution.tsx` (supported by `src/contribution-utils.ts`) | Interactive HTML5 Canvas visualization presenting a full year of activity. Folds between a flat 2D heatmap and a 3D isometric skyline with wave elevation morphing, interactive camera orbit (drag to rotate, double click to reset), keyboard arrow grid navigation, tooltip inspection, and multi-palette color theme support. | `data?: ContributionDay[]`, `endDate?: string \| Date`, `view?: "2d" \| "3d"`, `defaultView?: "2d" \| "3d"`, `palette?: PaletteInput`, `orbit?: boolean`, `showStats?: boolean`, `showLegend?: boolean`, `showToggle?: boolean`, `heightScale?: number`, etc. | `GitHubContributions.tsx`. |
+| `ContributionSkyline` — `src/contribution.tsx` (supported by `src/contribution-utils.ts`) | Interactive HTML5 Canvas visualization presenting a full year of activity. Folds between a flat 2D heatmap and a 3D isometric skyline with wave elevation morphing, interactive camera orbit (drag to rotate, double click to reset), keyboard arrow grid navigation, tooltip inspection, and multi-palette color theme support. | `data?: ContributionDay[]`, `endDate?: string \| Date`, `view?: "2d" \| "3d"`, `defaultView?: "2d" \| "3d"`, `palette?: PaletteInput`, `orbit?: boolean`, `showStats?: boolean`, `showLegend?: boolean`, `showToggle?: boolean`, `heightScale?: number`, etc. | `GitHubContributions.tsx`. |
 
 ## Pages and page-local UI
 
@@ -36,7 +36,7 @@ These are route-level components in `src/pages/`, not shared components in `src/
 | `NotFoundPage` — `src/pages/NotFoundPage.tsx` | Catch-all route content, rendered within `PageShell`. |
 | `KitchenSinkPage` — `src/pages/KitchenSinkPage.tsx` | Standalone development showcase of tokens, typography, links/buttons, navigation examples, empty states, and terminal treatment. Not wrapped in `PageShell`. |
 
-`src/pages/KitchenSinkPage.css` defines sample-specific styles. Its loading spinner is only a showcase state, not a loading indicator used by the site's static routes.
+`src/pages/KitchenSinkPage.css` defines showcase-only layout styles; shared type, action, empty-state, terminal, and text-link styles come from `src/styles/Portfolio.css`. Its loading spinner is only a showcase state, not a loading indicator used by the site's static routes.
 
 ## SVG Assets
 

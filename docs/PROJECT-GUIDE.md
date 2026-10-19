@@ -64,7 +64,7 @@ flowchart TD
 
 ## 3. The 3D Contribution Skyline Engine
 
-The contribution chart (`src/contibution.tsx` & `src/contribution-utils.ts`) is a custom-engineered HTML5 Canvas visualization.
+The contribution chart (`src/contribution.tsx` & `src/contribution-utils.ts`) is a custom-engineered HTML5 Canvas visualization.
 
 ### How It Works
 

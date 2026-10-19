@@ -1,6 +1,6 @@
 # Design System
 
-This document describes values implemented in `src/styles/index.css`, `src/styles/Portfolio.css`, and `src/pages/KitchenSinkPage.css`. Where the implementation differs from the original brief, the implemented value is listed here.
+This document describes values implemented in `src/styles/index.css` and `src/styles/Portfolio.css`. The CSS custom properties in `src/styles/index.css` are the single source of truth; the kitchen sink reads them at runtime through `var(--token)` rather than a TypeScript mirror. `src/pages/KitchenSinkPage.css` is limited to showcase layout and consumes the production type, action, empty-state, and terminal components.
 
 ## Color palette
 
@@ -8,14 +8,14 @@ This document describes values implemented in `src/styles/index.css`, `src/style
 | --- | --- | --- |
 | Page background (`--color-bg-page`) | `#050505` | Main canvas and sticky header background. |
 | Surface (`--color-bg-surface`) | `#0f0f0f` | Terminal body, menus, and secondary surfaces. |
-| Card (`--color-bg-card`) | `#111111` | Card-like empty states and pressed sample surfaces. |
+| Card (`--color-bg-card`) | `#111111` | Empty states, the contribution card, and pressed surfaces. |
 | Raised (`--color-bg-raised`) | `#1a1a1a` | Hovered navigation/control and chip surfaces. |
 | Primary text (`--color-text-primary`) | `#ffffff` | Headings, main copy, and primary links. |
 | Secondary text (`--color-text-secondary`) | `#9ca3af` | Supporting copy, labels, metadata, and terminal chrome. |
 | Muted text (`--color-text-muted`) | `#8a8a8a` | Disabled/sample muted content. |
-| Primary action | `#ffffff` | Primary showcase button background. |
+| Primary action | `#ffffff` | Primary action background. |
 | Text on primary action | `#050505` | Text on the white action surface. |
-| Primary-action hover | `#e5e5e5` | Hovered primary showcase button. |
+| Primary-action hover | `#e5e5e5` | Hovered primary action. |
 | Subtle border (`--color-border-subtle`) | `rgba(255, 255, 255, 0.06)` | Section separators and quiet framing. |
 | Strong border (`--color-border-strong`) | `rgba(255, 255, 255, 0.12)` | Terminal frame and emphasized outlines. |
 | Control border (`--color-border-control`) | `rgba(255, 255, 255, 0.5)` | Form-like controls and secondary button borders. |
@@ -39,7 +39,7 @@ The GitHub contribution graph introduces localized activity palettes (`src/contr
 | Heading | JetBrains Mono, 500 | `clamp(1.5rem, 3vw, 2rem)` (24–32px) | `1.25` | Section headings and title samples. |
 | Subheading | Inter, 500 | `1.25rem` (20px) | `1.25` | Smaller section and card headings. |
 | Body | Inter, 400 | `1rem` (16px) | `1.6` | Biography, descriptions, and ordinary copy. |
-| Label | JetBrains Mono, 500 | `.8125rem` (13px) | Label tracking `0.02em` | Eyebrows, compact UI labels, and buttons in the showcase. |
+| Label | JetBrains Mono, 500 | `.8125rem` (13px) | Label tracking `0.02em` | Eyebrows, compact UI labels, and interface actions. |
 | Meta | JetBrains Mono, 400 or 500 | `.75rem` (12px) | Label tracking `0.02em` | Small metadata and terminal labels. |
 | Editorial emphasis | Newsreader, 400 italic | Inherits the surrounding size | Normal tracking | Italic editorial sample/emphasis. |
 
@@ -72,6 +72,7 @@ The base spacing increment is `0.25rem` (4px). Tokens used by the application ar
 - The desktop home hero switches to two columns at Tailwind's `lg` breakpoint (1024px).
 - The header switches between desktop navigation and mobile disclosure below 48rem (768px).
 - A separate hero height/layout adjustment applies below 64rem (1024px).
+- Empty-state cards stack vertically below 64rem (1024px) so their action does not crowd the copy at tablet widths.
 - The kitchen-sink state grid becomes one column below 48rem.
 
 The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoint labels; the actual app's most visible breakpoint is 48rem for mobile navigation, with Tailwind's 1024px `lg` layout and an 80rem editorial frame.
@@ -89,21 +90,25 @@ The [project plan](./planning/PROJECT-PLAN.md) includes 640px and 768px breakpoi
 
 | Element | Implemented treatment and states |
 | --- | --- |
-| `ActionLink` | React Router link styled as a primary or secondary action. Its default variant is secondary. Background and border colors transition in 150ms with ease-out; focus-visible receives a white outline. |
-| Primary sample button | White fill and dark text; hover changes the fill to `#e5e5e5`; active moves down 1px; disabled uses a dashed border and muted text. |
-| Secondary sample button | Transparent, control-border outline, white text; hover uses the raised surface; active moves down 1px. |
-| Text links | White underlined text with 0.25em underline offset. The sample arrow moves right by 4px on hover. |
+| `ActionLink` | React Router link styled as a primary or secondary action. Its default variant is secondary. Mono 13px/500 uppercase type, 12×24 padding, 44px minimum height, and 6px radius. Background and border colors transition in 150ms with ease-out; active moves down 1px; focus-visible receives a white outline. Disabled actions use a dashed border and muted text. |
+| Primary action | White fill and dark text; hover changes the fill to `#e5e5e5`; active moves down 1px. |
+| Secondary action | Transparent with a control-border outline and white text; hover uses the raised surface; active moves down 1px. |
+| Text links | White underlined text with 0.25em underline offset. The optional arrow moves right by 4px on hover. |
 | Navigation links | Secondary text; hover/active becomes primary text and underlined. The active route has a visual underline/current-page indication. These state changes are immediate; the portfolio navigation selectors define no transition. |
 | Mobile navigation control | At least 44px tall, outlined and rounded; hover/open uses the raised surface, active uses the card surface. Escape closes it and returns focus to the trigger. |
 | Chips | Non-interactive showcase samples, 32px minimum height, raised surface, subtle border, 4px radius, mono metadata type. |
-| Empty-state card | Text-led card surface with a subtle border and 6px radius. It is not a clickable project card. |
-| Terminal window | Card background, 1px stronger frame, 12px radius, titlebar with decorative red/yellow/green controls, `~/intro` label and read-only status. Monospaced commands use primary text; output uses secondary text. Typing pauses briefly at line breaks. |
+| Empty-state card | Card surface with a subtle border, 6px radius, and 24px padding; it stacks below 64rem. It is used by the home, work, writing, and kitchen-sink examples and is not a clickable project card. |
+| Terminal window | Card background, 1px stronger frame, 12px radius, titlebar with decorative red/yellow/green controls, `~/intro` label and read-only status. Monospaced commands use primary text; output uses secondary text. Typing pauses briefly at line breaks. The kitchen sink renders the real `TerminalWindow` component. |
 | Social links | Inline SVG icons (20×20px) wrapped in accessible touch targets with `gap-4`. Hover boosts icon brightness; focus-visible applies the white outline ring. |
-| Contribution skyline | Interactive Canvas with responsive wrapper, 2D/3D toggle, orbit cursor (`grab` / `grabbing`), legend level hover highlights, and day tooltip overlays with date and activity counts. |
-| Focus-visible | White outline with a 2px outline width and 3px offset on the app's shared focus treatment. It is distinct from hover styling. |
+| Contribution skyline | Interactive Canvas with responsive wrapper, 2D/3D toggle, orbit cursor (`grab` / `grabbing`), legend level hover highlights, and day tooltip overlays with date and activity counts. The card consumes the site's card, border, and text tokens and is forced to the dark activity palette; legend swatches have 24×24 hit targets around their 11×11 visual marks. |
+| Focus-visible | White outline with a 2px outline width and 3px offset on the app's shared focus treatment. It is distinct from hover styling. Forced-colors mode uses the system `CanvasText` focus color. |
 
-Not all examples on the kitchen-sink page are used as live portfolio components: its chip and primary/disabled button samples document styles, while the real work page remains an empty state.
+The kitchen sink is a consumer of the production system: its type specimens use `portfolio-page-title`, `portfolio-subheading`, `portfolio-body`, `portfolio-eyebrow`, and `portfolio-editorial`; its actions use `portfolio-action`; its empty state uses `portfolio-empty-state`; and its terminal renders `TerminalWindow`. Showcase-only layout classes remain local to the kitchen sink. Chip samples remain a documentation-only pattern.
 
 ## Theme behavior
 
-The application is forced dark: the page background and `color-scheme` are dark, and there is no theme toggle or light-theme palette. `prefers-color-scheme: light` does not switch the site to light mode. There is no project-specific `forced-colors` override; behavior in a user's forced-colors environment is therefore not specially customized in this codebase.
+The application is forced dark: the page background and `color-scheme` are dark, and there is no theme toggle or light-theme palette. `prefers-color-scheme: light` does not switch the site to light mode. The contribution card does not follow the operating-system color scheme; it reads the site's card background and forces the dark activity palette. In forced-colors mode, focus indicators fall back to the system `CanvasText` color.
+
+## Verification
+
+Run `npm run check:design` (also part of `npm run lint`). The script verifies the required tokens in `src/styles/index.css`, requires the Preflight import and radius utilities, rejects legacy token names, arbitrary font-size utilities, and drop-shadow utilities, and prevents `KitchenSinkPage.css` from re-declaring production component classes. The 2026-10-19 audit and its fix record live in [DESIGN-AUDIT.md](./DESIGN-AUDIT.md).

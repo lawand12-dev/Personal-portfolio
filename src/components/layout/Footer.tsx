@@ -6,7 +6,7 @@ function Footer() {
   return (
     <footer className="portfolio-footer border-t border-line">
       <div className="portfolio-container flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-        <div>
+        <div className="min-w-0">
           <Link
             aria-label="Lawand Soran, home"
             className="portfolio-footer-name font-mono text-label"

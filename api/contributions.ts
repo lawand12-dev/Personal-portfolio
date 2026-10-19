@@ -1,6 +1,6 @@
 import process from 'node:process'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import type { ContributionDay } from '../src/contibution'
+import type { ContributionDay } from '../src/contribution'
 
 const GITHUB_USERNAME = 'lawand12-dev'
 const CONTRIBUTIONS_QUERY = `

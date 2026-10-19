@@ -51,6 +51,7 @@ The home, work, writing, about, and not-found routes are implemented. Work and w
 - [Documentation index](./docs/README.md) — index of implementation guides and planning documents.
 - [Architecture](./docs/ARCHITECTURE.md) — stack, routes, and source structure.
 - [Design system](./docs/DESIGN-SYSTEM.md) — implemented visual tokens and responsive behavior.
+- [Design audit](./docs/DESIGN-AUDIT.md) — 2026-10-19 audit scores, applied fixes, and verification evidence.
 - [Components](./docs/COMPONENTS.md) and [animations](./docs/ANIMATIONS.md) — reusable UI, 3D canvas visualization, and interaction behavior.
 - [Roadmap](./docs/ROADMAP.md) — status snapshot, priority tasks, and launch dependencies.
 - [Planning documents](./docs/planning/README.md) — brand, content plan, visual direction, wireframes, and original project brief.

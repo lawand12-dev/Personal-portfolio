@@ -42,19 +42,14 @@ function HomePage() {
     <>
       <section
         aria-labelledby="home-title"
-        className="portfolio-hero grid grid-cols-1 items-center gap-12 py-24 lg:grid-cols-[1.1fr_0.9fr]"
+        className="portfolio-hero grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
       >
         <div className="portfolio-hero-copy">
-          <p className="portfolio-eyebrow font-mono text-meta text-secondary">
-            ~/intro
-          </p>
-          <h1
-            className="portfolio-page-title mt-4 max-w-reading font-mono text-display font-bold leading-display tracking-display-copy"
-            id="home-title"
-          >
+          <p className="portfolio-eyebrow">~/intro</p>
+          <h1 className="portfolio-page-title mt-4 max-w-reading" id="home-title">
             Lawand Soran
           </h1>
-          <p className="portfolio-role mt-4 max-w-reading text-subheading leading-heading text-secondary">
+          <p className="portfolio-role mt-4 max-w-reading">
             Frontend developer building accessible interfaces with React
             and TypeScript.
           </p>
@@ -71,7 +66,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="work-heading"
-          className="portfolio-section border-t border-line py-16 md:py-24"
+          className="portfolio-section"
           id="work"
         >
           <SectionHeading
@@ -81,12 +76,10 @@ function HomePage() {
           >
             Projects are where I put new ideas and skills into practice.
           </SectionHeading>
-          <div className="portfolio-empty-state mt-8 border border-line-strong bg-surface p-6 md:p-8">
+          <div className="portfolio-empty-state mt-8">
             <div>
-              <h3 className="portfolio-subheading font-mono text-subheading">
-                Projects are in progress
-              </h3>
-              <p className="portfolio-body mt-3 max-w-reading text-secondary">
+              <h3 className="portfolio-subheading">Projects are in progress</h3>
+              <p className="portfolio-body mt-3 max-w-reading">
                 I haven&apos;t published a project yet. When I do, you&apos;ll
                 find what it does, how I built it, and links to explore it here.
               </p>
@@ -99,7 +92,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="about-heading"
-          className="portfolio-section border-t border-line py-16 md:py-24"
+          className="portfolio-section"
           id="about"
         >
           <SectionHeading
@@ -122,7 +115,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="skills-heading"
-          className="portfolio-section border-t border-line py-16 md:py-24"
+          className="portfolio-section"
           id="skills"
         >
           <SectionHeading
@@ -146,7 +139,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="contributions-heading"
-          className="portfolio-section border-t border-line py-16 md:py-24"
+          className="portfolio-section"
           id="contributions"
         >
           <SectionHeading
@@ -165,7 +158,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="writing-heading"
-          className="portfolio-section border-t border-line py-16 md:py-24"
+          className="portfolio-section"
           id="writing"
         >
           <SectionHeading
@@ -186,7 +179,7 @@ function HomePage() {
       <Reveal>
         <section
           aria-labelledby="contact-heading"
-          className="portfolio-section portfolio-contact border-t border-line py-16 md:py-24"
+          className="portfolio-section portfolio-contact"
           id="contact"
         >
           <SectionHeading
@@ -225,19 +218,12 @@ function SectionHeading({
 }) {
   return (
     <div className="portfolio-section-heading">
-      <p className="portfolio-eyebrow font-mono text-meta text-secondary">
-        {label}
-      </p>
+      <p className="portfolio-eyebrow">{label}</p>
       <div>
-        <h2
-          className="portfolio-section-title font-mono text-heading leading-heading"
-          id={id}
-        >
+        <h2 className="portfolio-section-title" id={id}>
           {title}
         </h2>
-        <p className="portfolio-body mt-4 max-w-reading text-secondary">
-          {children}
-        </p>
+        <p className="portfolio-body mt-4 max-w-reading">{children}</p>
       </div>
     </div>
   );

@@ -8,9 +8,9 @@ function AboutPage() {
   )
 
   return (
-    <article aria-labelledby="about-title" className="portfolio-page py-16 md:py-24">
-      <p className="portfolio-eyebrow font-mono text-meta text-secondary">~/about</p>
-      <h1 className="portfolio-page-title mt-4 font-mono text-display font-bold leading-display tracking-display-copy" id="about-title">
+    <article aria-labelledby="about-title" className="portfolio-page">
+      <p className="portfolio-eyebrow">~/about</p>
+      <h1 className="portfolio-page-title mt-4" id="about-title">
         About Lawand
       </h1>
       <div className="portfolio-prose mt-8 max-w-reading">

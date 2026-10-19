@@ -28,7 +28,7 @@ function SocialLinks() {
   return (
     <nav
       aria-label="Contact and social profiles"
-      className="portfolio-social-links flex flex-wrap gap-4"
+      className="portfolio-social-links flex flex-none flex-wrap gap-4"
     >
       <a
         aria-label="Gmail"

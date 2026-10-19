@@ -1,4 +1,5 @@
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "@fontsource/inter/latin-400.css";
 @import "@fontsource/inter/latin-500.css";
@@ -28,11 +29,24 @@
   --font-serif: var(--font-editorial);
 
   --text-display: var(--font-size-display);
+  --text-display--line-height: var(--line-height-display);
+  --text-display--letter-spacing: var(--tracking-display);
+  --text-display--font-weight: 700;
   --text-heading: var(--font-size-heading);
+  --text-heading--line-height: var(--line-height-heading);
+  --text-heading--letter-spacing: var(--tracking-display);
+  --text-heading--font-weight: 500;
   --text-subheading: var(--font-size-subheading);
+  --text-subheading--line-height: var(--line-height-heading);
+  --text-subheading--font-weight: 500;
   --text-body: var(--font-size-body);
+  --text-body--line-height: var(--line-height-body);
   --text-label: var(--font-size-label);
+  --text-label--line-height: 1.5;
+  --text-label--letter-spacing: var(--tracking-label);
   --text-meta: var(--font-size-meta);
+  --text-meta--line-height: 1.5;
+  --text-meta--letter-spacing: var(--tracking-label);
 
   --leading-display: var(--line-height-display);
   --leading-heading: var(--line-height-heading);
@@ -54,6 +68,22 @@
 
   --container-content: var(--content-width);
   --container-reading: var(--reading-width);
+}
+
+@utility rounded-chip {
+  border-radius: var(--radius-chip);
+}
+
+@utility rounded-control {
+  border-radius: var(--radius-control);
+}
+
+@utility rounded-card {
+  border-radius: var(--radius-card);
+}
+
+@utility rounded-terminal {
+  border-radius: var(--radius-terminal);
 }
 
 :root {
@@ -126,6 +156,7 @@
   --page-gutter: var(--space-6);
   --section-space: var(--space-24);
   --section-space-compact: var(--space-16);
+  --icon-size: 1.25rem;
 
   /* Shape and elevation */
   --radius-chip: 0.25rem;
@@ -228,5 +259,11 @@ a:hover {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 2px solid CanvasText;
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import ContributionSkyline from '../../contibution'
+import ContributionSkyline from '../../contribution'
 import type { ContributionDay } from '../../contribution-utils'
 
 type LoadState =
@@ -67,7 +67,7 @@ function GitHubContributions() {
 
   if (state.status === 'loading') {
     return (
-      <p aria-busy="true" className="portfolio-body mt-8 text-secondary" role="status">
+      <p aria-busy="true" className="portfolio-body mt-8" role="status">
         Loading contributions…
       </p>
     )
@@ -76,7 +76,7 @@ function GitHubContributions() {
   if (state.status === 'error') {
     return (
       <div className="mt-8 flex flex-wrap items-center gap-4">
-        <p className="portfolio-body text-secondary" role="alert">
+        <p className="portfolio-body" role="alert">
           GitHub contributions are temporarily unavailable. Retry loading them or
           view my GitHub profile.
         </p>
@@ -91,7 +91,7 @@ function GitHubContributions() {
           Retry loading contributions
         </button>
         <a
-          className="text-link"
+          className="portfolio-text-link"
           href="https://github.com/lawand12-dev"
           rel="noreferrer"
           target="_blank"
