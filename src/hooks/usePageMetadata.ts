@@ -26,6 +26,17 @@ function usePageMetadata(
     }
 
     document.title = title
+
+    const currentUrl = `https://lawandsoran.site${window.location.pathname}`
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (canonical) {
+      canonical.href = currentUrl
+    }
+
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
+    if (ogUrl) {
+      ogUrl.content = currentUrl
+    }
   }, [description, robots, title])
 }
 

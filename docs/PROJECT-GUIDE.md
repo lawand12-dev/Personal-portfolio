@@ -278,7 +278,7 @@ Here is your prioritized, step-by-step checklist to take this portfolio from its
     ├── Generate GitHub Classic Token with `read:user` scope.
     ├── Add `GITHUB_TOKEN` in Vercel project environment settings.
     ├── Deploy and verify that live contributions render on your production URL.
-    └── Connect your custom domain.
+    └── [x] Connected custom domain (`lawandsoran.site`).
 
 [ ] STEP 4: Configure Vitest Automated Testing
     ├── Add `"test": "vitest run"` to `package.json`.
@@ -287,8 +287,8 @@ Here is your prioritized, step-by-step checklist to take this portfolio from its
 
 [ ] STEP 5: Final Launch Polish
     ├── [x] Favicons and web manifest configured in `public/` (SVG, ICO, PNGs, and `site.webmanifest`).
-    ├── Create a custom Open Graph preview image at `public/og-image.png`.
-    ├── Verify canonical URL and social preview cards on Twitter/LinkedIn card validators.
+    ├── [x] Sitemap (`sitemap.xml`) and `robots.txt` generated for `lawandsoran.site`.
+    ├── [x] Canonical URL and Open Graph metadata configured for `lawandsoran.site`.
     └── Perform a final mobile and keyboard accessibility pass on physical devices.
 ```
 
