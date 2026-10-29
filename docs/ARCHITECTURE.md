@@ -15,6 +15,7 @@ Versions below are the dependency ranges declared in `package.json`; `package-lo
 | `typescript` | Type checking for the application and tooling configuration. |
 | `@base-ui/react` | Accessible unstyled UI primitive; provides `Collapsible` for the zero-CLS mobile navigation disclosure. |
 | `@vercel/node` | Request and response types for the server-side GitHub contributions function. |
+| `@vercel/analytics` | Real-time web traffic insights, privacy-friendly analytics, and Core Web Vitals tracking. |
 | `vite` | Development server, bundler, and static production build. |
 | `@vitejs/plugin-react` | React support in the Vite build. |
 | `tailwindcss`, `@tailwindcss/vite` | Tailwind v4 utilities and Vite integration; theme values are declared in CSS, not a Tailwind config file. |

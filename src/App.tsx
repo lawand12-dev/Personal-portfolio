@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ReactNode } from 'react'
 import { LazyMotion, domAnimation } from 'motion/react'
 import { BrowserRouter, Route, Routes } from 'react-router'
+import { Analytics } from '@vercel/analytics/react'
 import PageShell from './components/layout/PageShell'
 import HomePage from './pages/HomePage'
 import WritingIndexPage from './pages/WritingIndexPage'
@@ -68,6 +69,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </LazyMotion>
   )
 }
