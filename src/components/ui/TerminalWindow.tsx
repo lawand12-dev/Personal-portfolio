@@ -3,11 +3,11 @@ import { useReducedMotion } from "motion/react";
 
 const transcriptLines = [
   { text: "$ whoami", type: "command" },
-  { text: "Frontend developer — React · TypeScript · Motion", type: "output" },
+  { text: "Full-stack developer & founder — React · Node.js · TypeScript", type: "output" },
   { text: "", type: "spacer" },
   { text: "$ cat goals.md", type: "command" },
-  { text: "Building fast, accessible interfaces.", type: "output" },
-  { text: "Open to frontend roles and internships.", type: "output" },
+  { text: "Building products and turning ideas into software.", type: "output" },
+  { text: "Open to building, product collaborations, and engineering roles.", type: "output" },
 ] as const;
 
 const transcript = transcriptLines.map(({ text }) => text).join("\n");
@@ -69,9 +69,10 @@ function TerminalWindow() {
       </div>
       <div className="portfolio-terminal-body">
         <p className="sr-only">
-          Terminal transcript: whoami. Frontend developer — React · TypeScript ·
-          Motion. cat goals.md. Building fast, accessible interfaces. Open to
-          frontend roles and internships.
+          Terminal transcript: whoami. Full-stack developer & founder — React ·
+          Node.js · TypeScript. cat goals.md. Building products and turning ideas
+          into software. Open to building, product collaborations, and engineering
+          roles.
         </p>
         <div aria-hidden="true" className="portfolio-terminal-animation">
           <pre className="portfolio-terminal-reserve">{transcript}</pre>

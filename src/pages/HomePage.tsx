@@ -15,6 +15,10 @@ const skillGroups = [
     items: ["React", "Vite", "React Router"],
   },
   {
+    label: "backend/",
+    items: ["Node.js"],
+  },
+  {
     label: "styling/",
     items: ["Tailwind CSS", "shadcn/ui", "Base UI"],
   },
@@ -34,8 +38,8 @@ const skillGroups = [
 
 function HomePage() {
   usePageMetadata(
-    "Lawand Soran — Frontend Developer",
-    "Lawand Soran is a frontend developer building accessible interfaces with React and TypeScript. Explore his work and get in touch.",
+    "Lawand Soran — Full-Stack Developer & Founder",
+    "Lawand Soran is a full-stack developer and founder building products and turning ideas into software. Explore his work and get in touch.",
   );
 
   return (
@@ -50,8 +54,8 @@ function HomePage() {
             Lawand Soran
           </h1>
           <p className="portfolio-role mt-4 max-w-reading">
-            Frontend developer building accessible interfaces with React
-            and TypeScript.
+            Full-stack developer and founder building products and turning
+            ideas into reality.
           </p>
           <div className="portfolio-actions mt-8 flex flex-wrap gap-3">
             <ActionLink to="/work" variant="primary">
@@ -100,9 +104,9 @@ function HomePage() {
             label="~/about"
             title="Curious about how useful things get built."
           >
-            I&apos;m a self-directed learner interested in technology, business,
-            and turning ideas into reality. I&apos;m developing my frontend
-            skills, exploring AI-powered tools, and learning by building.
+            I&apos;m a self-directed builder and founder interested in technology,
+            business, and turning ideas into reality. I build full-stack web
+            applications, explore AI-powered tools, and learn by shipping.
             I&apos;m also interested in economics, startups, and how technology
             changes the way people work and live.
           </SectionHeading>
@@ -187,7 +191,7 @@ function HomePage() {
             label="~/contact"
             title="Get in touch"
           >
-            Looking to discuss a frontend opportunity? Email is the best
+            Looking to collaborate, discuss a project, or connect? Email is the best
             way to reach me.
           </SectionHeading>
           <div className="portfolio-contact-actions mt-8 flex flex-wrap items-center gap-6">

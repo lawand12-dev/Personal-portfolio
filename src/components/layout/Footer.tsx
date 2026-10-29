@@ -21,8 +21,8 @@ function Footer() {
             Lawand Soran
           </Link>
           <p className="m-0 mt-1 max-w-reading text-label text-secondary">
-            Frontend developer building accessible interfaces with React
-            and TypeScript.
+            Full-stack developer and founder building products and turning
+            ideas into reality.
           </p>
         </div>
         <SocialLinks />

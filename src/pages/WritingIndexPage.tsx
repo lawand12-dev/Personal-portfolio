@@ -2,8 +2,8 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function WritingIndexPage() {
   usePageMetadata(
-    'Writing — Lawand Soran — Frontend Developer',
-    'Notes by Lawand Soran on frontend development, learning by building, and the ideas behind the work.',
+    'Writing — Lawand Soran — Full-Stack Developer & Founder',
+    'Notes by Lawand Soran on engineering, building products, and turning ideas into software.',
   )
 
   return (
@@ -13,8 +13,7 @@ function WritingIndexPage() {
         Writing
       </h1>
       <p className="portfolio-intro mt-4 max-w-reading">
-        Notes on frontend development, learning by building, and the ideas behind
-        the work.
+        Notes on engineering, building products, and turning ideas into software.
       </p>
       <div className="portfolio-empty-state portfolio-empty-state--page mt-12">
         <div>

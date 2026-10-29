@@ -1,6 +1,6 @@
 # Lawand Soran — Portfolio
 
-A personal portfolio for presenting Lawand's frontend work, background, writing, and contact information. The site is a responsive, client-rendered React application built with TypeScript and Vite.
+A personal portfolio for presenting Lawand's full-stack products, background, writing, and contact information. The site is a responsive, client-rendered React application built with TypeScript and Vite.
 
 ## Run locally
 

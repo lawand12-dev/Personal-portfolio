@@ -3,8 +3,8 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function AboutPage() {
   usePageMetadata(
-    'About — Lawand Soran — Frontend Developer',
-    'Learn about Lawand Soran, a self-directed learner interested in frontend development, technology, and business.',
+    'About — Lawand Soran — Full-Stack Developer & Founder',
+    'Learn about Lawand Soran, a full-stack developer and founder turning ideas into products.',
   )
 
   return (
@@ -15,24 +15,23 @@ function AboutPage() {
       </h1>
       <div className="portfolio-prose mt-8 max-w-reading">
         <p className="portfolio-about-lead">
-          I&apos;m a self-directed learner interested in technology, business,
-          and the process of turning ideas into reality.
+          I&apos;m a self-directed full-stack developer and founder passionate about
+          technology, business, and turning ideas into tangible products.
         </p>
         <p>
-          I started exploring software development because I wanted to
-          understand how digital products work and how to build my own. That
-          curiosity has grown into an interest in frontend development,
-          AI-powered tools, and the ideas that connect technology and business.
+          I started exploring software development because I wanted to understand
+          how digital products work and how to build my own from scratch. That
+          curiosity has grown into full-stack engineering across modern frontend and
+          backend systems, exploring AI-powered workflows, and building real products.
         </p>
         <p>
-          I&apos;m developing my frontend skills and learning by building,
-          experimenting, and understanding the systems behind the things I
-          make. Outside of technology, I&apos;m interested in economics,
-          business strategy, and startups.
+          I learn by building, shipping, and understanding the complete architecture
+          behind software. Beyond code, I am deeply interested in product design,
+          economics, business strategy, and startups.
         </p>
         <p>
-          My long-term goal is to combine these interests to build useful
-          products. For now, I&apos;m working toward that one step at a time.
+          My focus is on creating fast, accessible, and practical products that solve
+          real problems.
         </p>
       </div>
       <div className="portfolio-section-action">

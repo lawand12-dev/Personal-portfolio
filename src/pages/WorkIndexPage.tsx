@@ -2,8 +2,8 @@ import usePageMetadata from '../hooks/usePageMetadata'
 
 function WorkIndexPage() {
   usePageMetadata(
-    'Work — Lawand Soran — Frontend Developer',
-    'Explore frontend projects by Lawand Soran, built while learning React, TypeScript, and accessible interface development.',
+    'Work — Lawand Soran — Full-Stack Developer & Founder',
+    'Explore projects and products by Lawand Soran, built with React, TypeScript, Node.js, and modern full-stack tools.',
   )
 
   return (
@@ -13,7 +13,7 @@ function WorkIndexPage() {
         Work
       </h1>
       <p className="portfolio-intro mt-4 max-w-reading">
-        Projects where I put frontend ideas into practice.
+        Products and projects where I turn ideas into software.
       </p>
       <div className="portfolio-empty-state portfolio-empty-state--page mt-12">
         <div>
