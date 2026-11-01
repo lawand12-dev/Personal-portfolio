@@ -1,8 +1,10 @@
+import { Link } from "react-router";
 import SocialLinks from "../components/layout/SocialLinks";
 import ActionLink from "../components/ui/ActionLink";
 import GitHubContributions from "../components/ui/GitHubContributions";
 import Reveal from "../components/ui/Reveal";
 import TerminalWindow from "../components/ui/TerminalWindow";
+import { getArticles } from "../data/articles";
 import usePageMetadata from "../hooks/usePageMetadata";
 
 const skillGroups = [
@@ -37,6 +39,8 @@ const skillGroups = [
 ];
 
 function HomePage() {
+  const [featuredArticle] = getArticles();
+
   usePageMetadata(
     "Lawand Soran — Full-Stack Developer & Founder",
     "Lawand Soran is a full-stack developer and founder building products and turning ideas into software. Explore his work and get in touch.",
@@ -170,12 +174,51 @@ function HomePage() {
             label="~/writing"
             title="Notes from learning and building"
           >
-            I haven&apos;t published any writing yet. I plan to share notes
-            about what I&apos;m learning in frontend development and the choices
-            I make while building.
+            Practical notes and reflections on engineering, building products, and
+            turning ideas into software.
           </SectionHeading>
-          <div className="portfolio-section-action">
-            <ActionLink to="/writing">Browse writing</ActionLink>
+
+          {featuredArticle ? (
+            <div className="mt-8">
+              <article
+                aria-labelledby="featured-article-title"
+                className="portfolio-article-card"
+              >
+                <div className="portfolio-meta flex items-center gap-3 font-mono text-meta text-secondary">
+                  <time dateTime={featuredArticle.date}>
+                    {featuredArticle.formattedDate}
+                  </time>
+                  <span aria-hidden="true">·</span>
+                  <span>{featuredArticle.readTime}</span>
+                </div>
+                <div className="mt-3">
+                  <h3
+                    className="portfolio-subheading"
+                    id="featured-article-title"
+                  >
+                    <Link
+                      className="hover:text-primary transition-colors"
+                      to={`/writing/${featuredArticle.slug}`}
+                    >
+                      {featuredArticle.title}
+                    </Link>
+                  </h3>
+                  <p className="portfolio-body mt-3 max-w-reading">
+                    {featuredArticle.summary}
+                  </p>
+                </div>
+                <Link
+                  className="portfolio-text-link mt-4"
+                  to={`/writing/${featuredArticle.slug}`}
+                >
+                  Read article <span aria-hidden="true">→</span>
+                </Link>
+              </article>
+            </div>
+          ) : null}
+
+          <div className="portfolio-section-action mt-6">
+            <ActionLink to="/writing">Browse all writing</ActionLink>
           </div>
         </section>
       </Reveal>

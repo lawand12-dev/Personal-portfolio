@@ -8,6 +8,7 @@ import WritingIndexPage from './pages/WritingIndexPage'
 import './styles/Portfolio.css'
 
 const AboutPage = lazy(() => import('./pages/AboutPage'))
+const ArticleDetailPage = lazy(() => import('./pages/ArticleDetailPage'))
 const KitchenSinkPage = lazy(() => import('./pages/KitchenSinkPage'))
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'))
 const WorkIndexPage = lazy(() => import('./pages/WorkIndexPage'))
@@ -50,6 +51,14 @@ function App() {
               path="work"
             />
             <Route element={<WritingIndexPage />} path="writing" />
+            <Route
+              element={
+                <PageLoading>
+                  <ArticleDetailPage />
+                </PageLoading>
+              }
+              path="writing/:slug"
+            />
             <Route
               element={
                 <PageLoading>
