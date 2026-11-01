@@ -34,10 +34,18 @@ function AboutPage() {
           real problems.
         </p>
       </div>
-      <div className="portfolio-section-action">
+      <div className="portfolio-section-action flex flex-wrap items-center gap-4">
         <ActionLink to="/work" variant="primary">
           View my work
         </ActionLink>
+        <a
+          className="portfolio-action portfolio-action--secondary"
+          href="https://cal.com/lawand-soran-45nazw/30min"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Book a 30-min call <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </article>
   )

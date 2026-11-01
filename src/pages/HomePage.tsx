@@ -234,17 +234,51 @@ function HomePage() {
             label="~/contact"
             title="Get in touch"
           >
-            Looking to collaborate, discuss a project, or connect? Email is the best
-            way to reach me.
+            Have a project in mind, an engineering opportunity, or want to talk tech and startups?
+            Schedule time directly or send a message.
           </SectionHeading>
-          <div className="portfolio-contact-actions mt-8 flex flex-wrap items-center gap-6">
-            <a
-              className="portfolio-action portfolio-action--primary"
-              href="mailto:lawandsoran110@gmail.com"
-            >
-              Email Lawand
-            </a>
-            <SocialLinks />
+
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="portfolio-empty-state portfolio-empty-state--page flex flex-col justify-between">
+              <div>
+                <p className="portfolio-eyebrow">cal.com · 30 min</p>
+                <h3 className="portfolio-subheading mt-3">Schedule a 30-min call</h3>
+                <p className="portfolio-body mt-2 max-w-reading">
+                  Book a time directly on my calendar to talk about engineering
+                  roles, collaboration, or new ideas.
+                </p>
+              </div>
+              <div className="mt-6">
+                <a
+                  className="portfolio-action portfolio-action--primary"
+                  href="https://cal.com/lawand-soran-45nazw/30min"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  Book a call <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="portfolio-empty-state portfolio-empty-state--page flex flex-col justify-between">
+              <div>
+                <p className="portfolio-eyebrow">direct · async</p>
+                <h3 className="portfolio-subheading mt-3">Send an email</h3>
+                <p className="portfolio-body mt-2 max-w-reading">
+                  Prefer writing? Drop me an email anytime or connect across
+                  my profiles.
+                </p>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <a
+                  className="portfolio-action portfolio-action--secondary"
+                  href="mailto:lawandsoran110@gmail.com"
+                >
+                  Email Lawand
+                </a>
+                <SocialLinks />
+              </div>
+            </div>
           </div>
         </section>
       </Reveal>

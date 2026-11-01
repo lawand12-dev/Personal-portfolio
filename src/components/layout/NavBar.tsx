@@ -29,6 +29,15 @@ function NavigationLinks({
           {label}
         </NavLink>
       ))}
+      <a
+        className="portfolio-nav-link"
+        href="https://cal.com/lawand-soran-45nazw/30min"
+        onClick={mobile ? onNavigate : undefined}
+        rel="noreferrer"
+        target="_blank"
+      >
+        Book a call <span aria-hidden="true" className="ml-1 text-muted text-meta">↗</span>
+      </a>
     </>
   )
 }
