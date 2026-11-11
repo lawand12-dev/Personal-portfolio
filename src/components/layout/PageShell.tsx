@@ -1,8 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m, useReducedMotion } from 'motion/react'
-import { Outlet, useLocation } from 'react-router'
+import { useLocation, useOutlet } from 'react-router'
+import CommandPalette from '../ui/CommandPalette'
 import Footer from './Footer'
 import NavBar from './NavBar'
+
+/**
+ * Freezes the route outlet at the moment of mount.
+ * When the route changes, AnimatePresence keeps the exiting container mounted;
+ * FrozenOutlet prevents that exiting container from displaying the incoming route.
+ */
+function FrozenOutlet() {
+  const currentOutlet = useOutlet()
+  const [frozenOutlet] = useState(currentOutlet)
+  return <>{frozenOutlet}</>
+}
 
 function PageShell() {
   const { pathname } = useLocation()
@@ -13,7 +25,7 @@ function PageShell() {
   useEffect(() => {
     if (previousPath.current !== pathname) {
       previousPath.current = pathname
-      mainRef.current?.focus()
+      mainRef.current?.focus({ preventScroll: true })
     }
   }, [pathname])
 
@@ -23,40 +35,49 @@ function PageShell() {
         Skip to content
       </a>
       <NavBar />
+      <CommandPalette />
       <main
         className="portfolio-container"
         id="main-content"
         ref={mainRef}
         tabIndex={-1}
       >
-        <AnimatePresence initial={false} mode="wait">
+        <AnimatePresence
+          initial={true}
+          mode="wait"
+          onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+        >
           <m.div
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             exit={
               shouldReduceMotion
-                ? { opacity: 1, y: 0 }
+                ? { opacity: 0 }
                 : {
                     opacity: 0,
-                    y: -6,
+                    y: -10,
+                    filter: 'blur(4px)',
                     transition: {
-                      duration: 0.15,
-                      ease: [0.5, 0, 0.75, 0],
+                      duration: 0.22,
+                      ease: [0.4, 0, 1, 1],
                     },
                   }
             }
             initial={
               shouldReduceMotion
                 ? false
-                : { opacity: 0, y: 8 }
+                : { opacity: 0, y: 20, filter: 'blur(6px)' }
             }
             key={pathname}
             transition={
               shouldReduceMotion
                 ? { duration: 0 }
-                : { duration: 0.24, ease: [0.25, 1, 0.5, 1] }
+                : {
+                    duration: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
+                  }
             }
           >
-            <Outlet />
+            <FrozenOutlet />
           </m.div>
         </AnimatePresence>
       </main>

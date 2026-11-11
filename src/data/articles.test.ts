@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getArticleBySlug, getArticles } from "./articles";
+import { getAdjacentArticles, getArticleBySlug, getArticles } from "./articles";
 
 describe("articles data accessors", () => {
   it("returns published articles with non-empty metadata", () => {
@@ -11,6 +11,8 @@ describe("articles data accessors", () => {
     expect(first.slug).toBeDefined();
     expect(first.title).toBeDefined();
     expect(first.sections.length).toBeGreaterThan(0);
+    expect(first.formattedDate).toBeDefined();
+    expect(first.readTime).toMatch(/\d+ min read/);
   });
 
   it("finds article by its exact slug", () => {
@@ -23,5 +25,15 @@ describe("articles data accessors", () => {
   it("returns undefined for non-existent slug", () => {
     const article = getArticleBySlug("does-not-exist-slug");
     expect(article).toBeUndefined();
+  });
+
+  it("returns adjacent articles correctly", () => {
+    const slug = "why-smart-ai-models-still-write-like-bots";
+    const adjacent = getAdjacentArticles(slug);
+    expect(adjacent).toBeDefined();
+    expect(typeof adjacent).toBe("object");
+
+    const nonExistent = getAdjacentArticles("invalid-slug");
+    expect(nonExistent).toEqual({});
   });
 });

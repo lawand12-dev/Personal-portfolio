@@ -169,6 +169,10 @@
   --duration-fast: 150ms;
   --duration-medium: 240ms;
   --duration-slow: 400ms;
+  --duration-page: 900ms;
+  --stagger-page: 90ms;
+  --stagger-word: 60ms;
+  --enter-delay: 60ms;
   --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in: cubic-bezier(0.5, 0, 0.75, 0);
 

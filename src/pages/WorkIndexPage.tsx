@@ -1,17 +1,18 @@
-import usePageMetadata from '../hooks/usePageMetadata'
+import PageTitle from "../components/ui/PageTitle";
+import usePageMetadata from "../hooks/usePageMetadata";
 
 function WorkIndexPage() {
   usePageMetadata(
-    'Work — Lawand Soran — Full-Stack Developer & Founder',
-    'Explore projects and products by Lawand Soran, built with React, TypeScript, Node.js, and modern full-stack tools.',
-  )
+    "Work — Lawand Soran — Full-Stack Developer & Founder",
+    "Explore projects and products by Lawand Soran, built with React, TypeScript, Node.js, and modern full-stack tools.",
+  );
 
   return (
     <section aria-labelledby="work-title" className="portfolio-page">
       <p className="portfolio-eyebrow">~/work</p>
-      <h1 className="portfolio-page-title mt-4" id="work-title">
+      <PageTitle className="portfolio-page-title mt-4" id="work-title">
         Work
-      </h1>
+      </PageTitle>
       <p className="portfolio-intro mt-4 max-w-reading">
         Products and projects where I turn ideas into software.
       </p>
@@ -34,7 +35,7 @@ function WorkIndexPage() {
         </a>
       </div>
     </section>
-  )
+  );
 }
 
-export default WorkIndexPage
+export default WorkIndexPage;

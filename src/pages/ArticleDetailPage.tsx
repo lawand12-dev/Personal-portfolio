@@ -1,20 +1,19 @@
-import { Link, useParams } from 'react-router'
-import ActionLink from '../components/ui/ActionLink'
-import { getArticleBySlug } from '../data/articles'
-import usePageMetadata from '../hooks/usePageMetadata'
+import { Link, useParams } from "react-router";
+import ActionLink from "../components/ui/ActionLink";
+import { getAdjacentArticles, getArticleBySlug } from "../data/articles";
+import usePageMetadata from "../hooks/usePageMetadata";
 
 function ArticleDetailPage() {
-  const { slug } = useParams<{ slug: string }>()
-  const article = slug ? getArticleBySlug(slug) : undefined
+  const { slug } = useParams<{ slug: string }>();
+  const article = slug ? getArticleBySlug(slug) : undefined;
+  const adjacent = slug ? getAdjacentArticles(slug) : {};
 
   usePageMetadata(
     article
       ? `${article.title} — Lawand Soran`
-      : 'Article not found — Lawand Soran',
-    article
-      ? article.summary
-      : 'The requested article could not be found.',
-  )
+      : "Article not found — Lawand Soran",
+    article ? article.summary : "The requested article could not be found.",
+  );
 
   if (!article) {
     return (
@@ -32,7 +31,7 @@ function ArticleDetailPage() {
           </ActionLink>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -59,7 +58,9 @@ function ArticleDetailPage() {
       </header>
 
       <div className="portfolio-prose mt-8 max-w-reading">
-        <p className="portfolio-about-lead portfolio-editorial">{article.lead}</p>
+        <p className="portfolio-about-lead portfolio-editorial">
+          {article.lead}
+        </p>
 
         {article.introParagraphs.map((paragraph, index) => (
           <p key={index}>{paragraph}</p>
@@ -67,9 +68,9 @@ function ArticleDetailPage() {
 
         {article.sections.map((section) => (
           <section
-            aria-labelledby={`section-${section.heading ? encodeURIComponent(section.heading) : 'notes'}`}
+            aria-labelledby={`section-${section.heading ? encodeURIComponent(section.heading) : "notes"}`}
             className="mt-10"
-            key={section.heading ?? 'notes'}
+            key={section.heading ?? "notes"}
           >
             {section.heading && (
               <h2
@@ -92,20 +93,72 @@ function ArticleDetailPage() {
           className="portfolio-empty-state portfolio-empty-state--page mt-12 max-w-reading"
         >
           <p className="portfolio-body">
-            <strong className="text-primary font-medium">Editorial note: </strong>
-            {article.editorialNote.replace(/^Editorial note:\s*/i, '')}
+            <strong className="text-primary font-medium">
+              Editorial note:{" "}
+            </strong>
+            {article.editorialNote.replace(/^Editorial note:\s*/i, "")}
           </p>
         </aside>
       )}
 
-      <div className="portfolio-section-action mt-12">
+      {(adjacent.older || adjacent.newer) && (
+        <nav
+          aria-label="Article navigation"
+          className="mt-12 grid grid-cols-1 gap-4 border-t border-line pt-8 sm:grid-cols-2 max-w-reading"
+        >
+          {adjacent.older ? (
+            <Link
+              className="rounded-card border border-line bg-card p-4 transition-colors hover:border-line-strong hover:bg-raised block"
+              to={`/writing/${adjacent.older.slug}`}
+            >
+              <span className="font-mono text-meta text-muted">
+                ← Previous article
+              </span>
+              <p className="font-medium text-body text-primary mt-1">
+                {adjacent.older.title}
+              </p>
+              <span className="font-mono text-meta text-secondary mt-2 block">
+                {adjacent.older.readTime}
+              </span>
+            </Link>
+          ) : (
+            <div />
+          )}
+
+          {adjacent.newer && (
+            <Link
+              className="rounded-card border border-line bg-card p-4 transition-colors hover:border-line-strong hover:bg-raised block sm:text-right"
+              to={`/writing/${adjacent.newer.slug}`}
+            >
+              <span className="font-mono text-meta text-muted">
+                Next article →
+              </span>
+              <p className="font-medium text-body text-primary mt-1">
+                {adjacent.newer.title}
+              </p>
+              <span className="font-mono text-meta text-secondary mt-2 block">
+                {adjacent.newer.readTime}
+              </span>
+            </Link>
+          )}
+        </nav>
+      )}
+
+      <div className="portfolio-section-action mt-8 flex flex-wrap items-center gap-4">
         <ActionLink to="/writing" variant="secondary">
           Back to writing
         </ActionLink>
+        <a
+          className="portfolio-action portfolio-action--secondary"
+          href="https://cal.com/lawand-soran-45nazw/30min"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Book a 30-min call <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </article>
-  )
+  );
 }
 
-export default ArticleDetailPage
-
+export default ArticleDetailPage;

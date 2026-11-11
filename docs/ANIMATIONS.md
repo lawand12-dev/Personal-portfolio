@@ -6,8 +6,9 @@ The current implementation is intentionally restrained. The original project bri
 | --- | --- | --- | --- |
 | Terminal typing | On mount, transcript characters appear progressively, with a brief pause at line breaks. | React state and chained `setTimeout`; 40ms per character and 300ms after a line break. No easing. | `src/components/ui/TerminalWindow.tsx` |
 | Terminal cursor | A cursor blinks next to the transcript. | CSS keyframes, 1s cycle using `steps(2, start)`, infinite. | `src/styles/Portfolio.css` |
-| Scroll reveal | Wrapped content fades in and moves upward 12px when entering the viewport; each reveal runs once. The `delay` prop can stagger items. | Motion `whileInView`, `opacity` and `y`; 400ms with ease-out; default delay 0. | `src/components/ui/Reveal.tsx` |
-| Route transition | On route changes, the outgoing page fades and moves slightly upward; the new page fades in and moves from `y: 8` to rest. The shell also focuses the main landmark after route change. | Motion opacity/transform; exit 150ms ease-in, entry 240ms ease-out. | `src/components/layout/PageShell.tsx` |
+| Scroll reveal | Wrapped content fades in and moves upward 24px with subtle blur clear when entering the viewport; each reveal runs once. The `delay` prop can stagger items. | Motion `whileInView`, `opacity`, `filter`, and `y`; 600ms with ease-out `[0.16, 1, 0.3, 1]`; default delay 0. | `src/components/ui/Reveal.tsx` |
+| Route transition & Page opening | On first load and on route changes, the incoming page gently glides upward and settles into focus with a subtle blur clear. On navigation, the outgoing page smoothly dissolves upward before the new page enters. A frozen route outlet prevents the new page from flashing inside the exiting container. | Motion `AnimatePresence mode="wait"`; entry 550ms `[0.16, 1, 0.3, 1]` (`y: 20px`, `blur(6px)`); exit 220ms `[0.4, 0, 1, 1]` (`y: -10px`, `blur(4px)`). | `src/components/layout/PageShell.tsx` |
+| Article & work card hover | Cards slightly lift with an elevated surface and cue arrow advance on hover. | CSS transform/background/border transitions, 150ms, ease-out. | `src/styles/Portfolio.css` |
 | Navigation disclosure | Mobile menu appears/disappears when the menu button is toggled; links close it. Escape closes the menu and returns focus. | Base UI `Collapsible` with controlled React state; no animation. | `src/components/layout/NavBar.tsx` |
 | Contribution wave morph | 2D heatmap morphs into a 3D isometric skyline (and vice-versa). Bars rise in a progressive wave sweeping from oldest week to newest week as the camera tilts. | Canvas `requestAnimationFrame`, `easeOutCubic` / `easeInOutCubic`, wave delay offset per column/row (`riseAt`). Duration default 750ms. | `src/contribution.tsx`, `src/contribution-utils.ts` |
 | Contribution 3D orbit | In 3D view, dragging on canvas rotates camera yaw (8° to 82°) and elevation (18° to 62°); double-clicking smoothly resets to default isometric angle. | Canvas pointer drag listeners with delta tracking and clamped spherical camera projection. | `src/contribution.tsx`, `src/contribution-utils.ts` |
@@ -24,7 +25,7 @@ The actual implementation does **not** include the planned project-card lift, fr
 
 - `TerminalWindow` uses Motion's reduced-motion preference and presents the complete transcript immediately rather than typing; the cursor animation is disabled.
 - `Reveal` checks the reduced-motion preference and avoids its entrance movement/hidden initial state when reduction is requested.
-- `PageShell` disables route animation when reduced motion is requested.
+- `PageShell` disables route entrance and exit motion, rendering pages immediately without blur or translation when reduced motion is requested.
 - `ContributionSkyline` respects user preference and avoids disorienting motion; 2D/3D state transitions snap directly without prolonged wave delays.
 - Global CSS uses `@media (prefers-reduced-motion: reduce)` to switch smooth scrolling off and set CSS animation/transition durations to `0.01ms` with a single iteration.
 - The kitchen-sink spinner is stopped under reduced motion. Its arrow sample also does not translate.

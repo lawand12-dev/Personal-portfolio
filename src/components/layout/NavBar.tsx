@@ -3,6 +3,10 @@ import { useRef, useState, type KeyboardEvent } from 'react'
 import { Link, NavLink } from 'react-router'
 import logo from '../../assets/LS_logo.svg'
 
+function openCommandPalette() {
+  window.dispatchEvent(new CustomEvent('open-command-palette'))
+}
+
 const links = [
   { label: 'Work', to: '/work' },
   { label: 'Writing', to: '/writing' },
@@ -86,6 +90,15 @@ function NavBar() {
             className="portfolio-desktop-nav flex items-center gap-6"
           >
             <NavigationLinks />
+            <button
+              aria-label="Open command palette (Press Cmd+K or Ctrl+K)"
+              className="portfolio-command-trigger"
+              onClick={openCommandPalette}
+              type="button"
+            >
+              <span aria-hidden="true" className="portfolio-command-prompt">&gt;_</span>
+              <kbd className="portfolio-kbd">⌘K</kbd>
+            </button>
           </nav>
 
           <Collapsible.Trigger
@@ -107,6 +120,17 @@ function NavBar() {
               mobile
               onNavigate={() => setMobileNavigationOpen(false)}
             />
+            <button
+              className="portfolio-nav-link flex items-center justify-between w-full text-left cursor-pointer border-t border-line pt-2 mt-2"
+              onClick={() => {
+                setMobileNavigationOpen(false)
+                openCommandPalette()
+              }}
+              type="button"
+            >
+              <span>Command palette</span>
+              <kbd className="portfolio-kbd">⌘K</kbd>
+            </button>
           </nav>
         </Collapsible.Panel>
       </Collapsible.Root>

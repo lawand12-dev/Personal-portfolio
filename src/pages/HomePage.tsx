@@ -1,7 +1,9 @@
-import { Link } from "react-router";
 import SocialLinks from "../components/layout/SocialLinks";
 import ActionLink from "../components/ui/ActionLink";
+import ArticleCard from "../components/ui/ArticleCard";
 import GitHubContributions from "../components/ui/GitHubContributions";
+import GitHubActivity from "../components/ui/GitHubActivity";
+import PageTitle from "../components/ui/PageTitle";
 import Reveal from "../components/ui/Reveal";
 import TerminalWindow from "../components/ui/TerminalWindow";
 import { getArticles } from "../data/articles";
@@ -54,12 +56,15 @@ function HomePage() {
       >
         <div className="portfolio-hero-copy">
           <p className="portfolio-eyebrow">~/intro</p>
-          <h1 className="portfolio-page-title mt-4 max-w-reading" id="home-title">
+          <PageTitle
+            className="portfolio-page-title mt-4 max-w-reading"
+            id="home-title"
+          >
             Lawand Soran
-          </h1>
+          </PageTitle>
           <p className="portfolio-role mt-4 max-w-reading">
-            Full-stack developer and founder building products and turning
-            ideas into reality.
+            Full-stack developer and founder building products and turning ideas
+            into reality.
           </p>
           <div className="portfolio-actions mt-8 flex flex-wrap gap-3">
             <ActionLink to="/work" variant="primary">
@@ -108,11 +113,11 @@ function HomePage() {
             label="~/about"
             title="Curious about how useful things get built."
           >
-            I&apos;m a self-directed builder and founder interested in technology,
-            business, and turning ideas into reality. I build full-stack web
-            applications, explore AI-powered tools, and learn by shipping.
-            I&apos;m also interested in economics, startups, and how technology
-            changes the way people work and live.
+            I&apos;m a self-directed builder and founder interested in
+            technology, business, and turning ideas into reality. I build
+            full-stack web applications, explore AI-powered tools, and learn by
+            shipping. I&apos;m also interested in economics, startups, and how
+            technology changes the way people work and live.
           </SectionHeading>
           <div className="portfolio-section-action">
             <ActionLink to="/about">More about me</ActionLink>
@@ -159,6 +164,7 @@ function HomePage() {
           </SectionHeading>
           <div className="mt-8">
             <GitHubContributions />
+            <GitHubActivity />
           </div>
         </section>
       </Reveal>
@@ -174,46 +180,13 @@ function HomePage() {
             label="~/writing"
             title="Notes from learning and building"
           >
-            Practical notes and reflections on engineering, building products, and
-            turning ideas into software.
+            Practical notes and reflections on engineering, building products,
+            and turning ideas into software.
           </SectionHeading>
 
           {featuredArticle ? (
             <div className="mt-8">
-              <article
-                aria-labelledby="featured-article-title"
-                className="portfolio-article-card"
-              >
-                <div className="portfolio-meta flex items-center gap-3 font-mono text-meta text-secondary">
-                  <time dateTime={featuredArticle.date}>
-                    {featuredArticle.formattedDate}
-                  </time>
-                  <span aria-hidden="true">·</span>
-                  <span>{featuredArticle.readTime}</span>
-                </div>
-                <div className="mt-3">
-                  <h3
-                    className="portfolio-subheading"
-                    id="featured-article-title"
-                  >
-                    <Link
-                      className="hover:text-primary transition-colors"
-                      to={`/writing/${featuredArticle.slug}`}
-                    >
-                      {featuredArticle.title}
-                    </Link>
-                  </h3>
-                  <p className="portfolio-body mt-3 max-w-reading">
-                    {featuredArticle.summary}
-                  </p>
-                </div>
-                <Link
-                  className="portfolio-text-link mt-4"
-                  to={`/writing/${featuredArticle.slug}`}
-                >
-                  Read article <span aria-hidden="true">→</span>
-                </Link>
-              </article>
+              <ArticleCard article={featuredArticle} headingLevel="h3" />
             </div>
           ) : null}
 
@@ -234,15 +207,17 @@ function HomePage() {
             label="~/contact"
             title="Get in touch"
           >
-            Have a project in mind, an engineering opportunity, or want to talk tech and startups?
-            Schedule time directly or send a message.
+            Have a project in mind, an engineering opportunity, or want to talk
+            tech and startups? Schedule time directly or send a message.
           </SectionHeading>
 
           <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="portfolio-empty-state portfolio-empty-state--page flex flex-col justify-between">
               <div>
                 <p className="portfolio-eyebrow">cal.com · 30 min</p>
-                <h3 className="portfolio-subheading mt-3">Schedule a 30-min call</h3>
+                <h3 className="portfolio-subheading mt-3">
+                  Schedule a 30-min call
+                </h3>
                 <p className="portfolio-body mt-2 max-w-reading">
                   Book a time directly on my calendar to talk about engineering
                   roles, collaboration, or new ideas.
@@ -265,8 +240,8 @@ function HomePage() {
                 <p className="portfolio-eyebrow">direct · async</p>
                 <h3 className="portfolio-subheading mt-3">Send an email</h3>
                 <p className="portfolio-body mt-2 max-w-reading">
-                  Prefer writing? Drop me an email anytime or connect across
-                  my profiles.
+                  Prefer writing? Drop me an email anytime or connect across my
+                  profiles.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-4">

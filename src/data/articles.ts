@@ -16,13 +16,16 @@ export interface Article {
   editorialNote?: string
 }
 
-export const articles: Article[] = [
+/** What an author writes. Display date and reading time are derived below. */
+type ArticleSource = Omit<Article, 'formattedDate' | 'readTime'>
+
+const WORDS_PER_MINUTE = 220
+
+const articleSources: ArticleSource[] = [
   {
     slug: 'why-smart-ai-models-still-write-like-bots',
     title: 'Why smart AI models still write like bots',
     date: '2026-11-01',
-    formattedDate: 'November 1, 2026',
-    readTime: '4 min read',
     summary:
       'A model can solve a hard coding problem and then fail to write four plain paragraphs. Here is why reasoning scores don’t translate into readable prose.',
     lead:
@@ -80,11 +83,56 @@ export const articles: Article[] = [
   },
 ]
 
+function countWords(text: string): number {
+  return text.split(/\s+/).filter(Boolean).length
+}
+
+export function estimateReadTime(article: ArticleSource): string {
+  const text = [
+    article.lead,
+    ...article.introParagraphs,
+    ...article.sections.flatMap((section) => [
+      section.heading ?? '',
+      ...section.paragraphs,
+    ]),
+    article.editorialNote ?? '',
+  ].join(' ')
+  const minutes = Math.max(1, Math.round(countWords(text) / WORDS_PER_MINUTE))
+  return `${minutes} min read`
+}
+
+export function formatArticleDate(date: string): string {
+  // Parse as UTC so the day never shifts with the reader's timezone.
+  return new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'long',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`))
+}
+
+/** Newest first, so index 0 is the featured article. */
+export const articles: Article[] = articleSources
+  .map((source) => ({
+    ...source,
+    formattedDate: formatArticleDate(source.date),
+    readTime: estimateReadTime(source),
+  }))
+  .sort((a, b) => b.date.localeCompare(a.date))
+
 export function getArticles(): Article[] {
   return articles
 }
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return articles.find((article) => article.slug === slug)
+}
+
+/** `newer` and `older` neighbours in publication order, for article-to-article navigation. */
+export function getAdjacentArticles(slug: string): {
+  newer?: Article
+  older?: Article
+} {
+  const index = articles.findIndex((article) => article.slug === slug)
+  if (index === -1) return {}
+  return { newer: articles[index - 1], older: articles[index + 1] }
 }
 

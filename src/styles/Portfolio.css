@@ -241,6 +241,13 @@
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-card);
   background: var(--color-bg-card);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.portfolio-empty-state:hover {
+  border-color: var(--color-border-strong);
 }
 
 .portfolio-empty-state > div {
@@ -253,6 +260,7 @@
 }
 
 .portfolio-article-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -260,11 +268,41 @@
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-card);
   background: var(--color-bg-card);
-  transition: border-color var(--duration-fast) var(--ease-out);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
 .portfolio-article-card:hover {
   border-color: var(--color-border-strong);
+  background: var(--color-bg-raised);
+  transform: translateY(-2px);
+}
+
+.portfolio-card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+}
+
+.portfolio-card-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-label);
+  font-weight: 500;
+}
+
+.portfolio-card-cue span {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.portfolio-article-card:hover .portfolio-card-cue span {
+  transform: translateX(var(--space-1));
 }
 
 .portfolio-terminal {
@@ -578,7 +616,76 @@
   }
 }
 
+/* Command Palette & keyboard hints */
+.portfolio-command-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: var(--font-size-meta);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+}
+
+.portfolio-command-trigger:hover {
+  background: var(--color-bg-raised);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.portfolio-command-prompt {
+  color: var(--color-text-muted);
+}
+
+.portfolio-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-chip);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  line-height: 1;
+}
+
+.portfolio-activity-card {
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+.portfolio-activity-card:hover {
+  border-color: var(--color-border-strong);
+}
+
+@keyframes portfolio-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Header and footer only fade on the first full load, since PageShell stays mounted. */
+.portfolio-site > header,
+.portfolio-site > footer {
+  animation: portfolio-fade-in var(--duration-page) var(--ease-out) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .portfolio-site > header,
+  .portfolio-site > footer {
+    animation: none;
+  }
+
   .portfolio-skip-link {
     transition: none;
   }
@@ -588,7 +695,8 @@
     animation: none;
   }
 
-  .portfolio-text-link span {
+  .portfolio-text-link span,
+  .portfolio-card-cue span {
     transform: none;
   }
 }

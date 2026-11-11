@@ -13,14 +13,22 @@ function Reveal({ children, className, delay = 0 }: RevealProps) {
   return (
     <m.div
       className={className}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+      initial={
+        shouldReduceMotion
+          ? false
+          : { opacity: 0, y: 24, filter: 'blur(4px)' }
+      }
       transition={
         shouldReduceMotion
           ? { duration: 0 }
-          : { duration: 0.4, delay, ease: [0.25, 1, 0.5, 1] }
+          : { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }
       }
       viewport={{ amount: 0.12, once: true }}
-      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      whileInView={
+        shouldReduceMotion
+          ? undefined
+          : { opacity: 1, y: 0, filter: 'blur(0px)' }
+      }
     >
       {children}
     </m.div>
