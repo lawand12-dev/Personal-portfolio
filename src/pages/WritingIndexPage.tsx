@@ -17,10 +17,20 @@ function WritingIndexPage() {
       <PageTitle className="portfolio-page-title mt-4" id="writing-title">
         Writing
       </PageTitle>
-      <p className="portfolio-intro mt-4 max-w-reading">
-        Notes on engineering, building products, and turning ideas into
-        software.
-      </p>
+      <div className="mt-4 flex flex-wrap items-center justify-between gap-4 max-w-reading">
+        <p className="portfolio-intro">
+          Notes on engineering, building products, and turning ideas into software.
+        </p>
+        <a
+          className="inline-flex items-center gap-1.5 font-mono text-meta text-muted hover:text-primary transition-colors border border-line rounded-chip px-2.5 py-1"
+          href="/feed.xml"
+          rel="noreferrer"
+          target="_blank"
+        >
+          <span aria-hidden="true" className="text-secondary">((•))</span>
+          <span>RSS Feed</span>
+        </a>
+      </div>
 
       {articles.length === 0 ? (
         <div className="portfolio-empty-state portfolio-empty-state--page mt-12">

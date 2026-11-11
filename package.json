@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/generate-rss.mjs && tsc -b && vite build",
+    "feed": "node scripts/generate-rss.mjs",
     "lint": "eslint . && node scripts/check-design-system.mjs",
     "check:design": "node scripts/check-design-system.mjs",
     "test": "vitest run",

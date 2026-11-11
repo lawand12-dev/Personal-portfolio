@@ -45,6 +45,7 @@ import {
   type PaletteInput,
   resolvePalette,
 } from './contribution-utils';
+import { playSwitchSound } from './utils/sound';
 
 
 type View = "2d" | "3d";
@@ -1310,7 +1311,10 @@ export default function ContributionSkyline({
                 aria-pressed={view === v}
                 aria-label={v === "2d" ? "Flat heat map" : "3D skyline"}
                 title={v === "2d" ? "Flat heat map" : "3D skyline"}
-                onClick={() => setView(v)}
+                onClick={() => {
+                  setView(v);
+                  playSwitchSound();
+                }}
                 className={
                   "relative z-10 grid h-7 w-8 cursor-pointer place-items-center rounded border-0 bg-transparent p-0 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-reduce:transition-none " +
                   (view === v ? "text-page" : "text-secondary")

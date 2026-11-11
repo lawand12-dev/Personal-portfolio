@@ -8,15 +8,17 @@ import {
 } from 'react'
 import { useNavigate } from 'react-router'
 import { getArticles } from '../../data/articles'
+import { isSoundEnabled, toggleSound } from '../../utils/sound'
 
 interface PaletteItem {
   id: string
-  category: 'Navigation' | 'Articles' | 'Connect'
+  category: 'Navigation' | 'Articles' | 'Connect' | 'Actions'
   title: string
   subtitle: string
   shortcut?: string
   to?: string
   href?: string
+  onSelect?: () => void
 }
 
 export default function CommandPalette() {
@@ -139,6 +141,22 @@ export default function CommandPalette() {
       shortcut: 'x',
       href: 'https://x.com/LawandOps',
     },
+    {
+      id: 'action-sound',
+      category: 'Actions',
+      title: `Toggle audio effects (${isSoundEnabled() ? 'Sound: ON' : 'Sound: OFF'})`,
+      subtitle: 'Mechanical keyboard clicks for terminal and UI actions',
+      shortcut: 'sound',
+      onSelect: () => toggleSound(),
+    },
+    {
+      id: 'action-rss',
+      category: 'Actions',
+      title: 'RSS Feed',
+      subtitle: 'Subscribe to writing feed (/feed.xml)',
+      shortcut: 'rss',
+      href: '/feed.xml',
+    },
   ]
 
   const trimmed = query.trim().toLowerCase()
@@ -167,13 +185,17 @@ export default function CommandPalette() {
 
   function selectItem(item: PaletteItem) {
     setOpen(false)
-    if (item.to) {
+    if (item.onSelect) {
+      item.onSelect()
+    } else if (item.to) {
       navigate(item.to)
     } else if (item.href) {
       if (item.href.startsWith('mailto:')) {
         window.location.href = item.href
-      } else {
+      } else if (item.href.startsWith('http')) {
         window.open(item.href, '_blank', 'noopener,noreferrer')
+      } else {
+        window.location.href = item.href
       }
     }
   }

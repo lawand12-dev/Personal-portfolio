@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import ActionLink from "../components/ui/ActionLink";
 import { getAdjacentArticles, getArticleBySlug } from "../data/articles";
@@ -7,6 +8,21 @@ function ArticleDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const article = slug ? getArticleBySlug(slug) : undefined;
   const adjacent = slug ? getAdjacentArticles(slug) : {};
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    function handleScroll() {
+      const total =
+        document.documentElement.scrollHeight - window.innerHeight;
+      if (total > 0) {
+        setScrollProgress(
+          Math.min(100, Math.max(0, (window.scrollY / total) * 100)),
+        );
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   usePageMetadata(
     article
@@ -34,8 +50,22 @@ function ArticleDetailPage() {
     );
   }
 
+  const headings = article.sections
+    .map((s) => s.heading)
+    .filter((h): h is string => Boolean(h));
+
   return (
     <article aria-labelledby="article-title" className="portfolio-page">
+      <div
+        aria-hidden="true"
+        className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-line pointer-events-none"
+      >
+        <div
+          className="h-full bg-primary transition-all duration-75"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       <nav aria-label="Breadcrumb" className="portfolio-eyebrow">
         <Link className="hover:text-primary transition-colors" to="/writing">
           ~/writing
@@ -54,8 +84,46 @@ function ArticleDetailPage() {
           <time dateTime={article.date}>{article.formattedDate}</time>
           <span aria-hidden="true">·</span>
           <span>{article.readTime}</span>
+          <span aria-hidden="true">·</span>
+          <a
+            className="hover:text-primary transition-colors inline-flex items-center gap-1 text-muted"
+            href="/feed.xml"
+            rel="noreferrer"
+            target="_blank"
+            title="RSS feed for writing"
+          >
+            <span>rss</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </header>
+
+      {headings.length > 1 && (
+        <nav
+          aria-label="Table of contents"
+          className="my-8 rounded-card border border-line bg-card/60 p-4 font-mono text-meta max-w-reading"
+        >
+          <div className="flex items-center gap-2 text-secondary font-medium uppercase tracking-label">
+            <span>Outline</span>
+            <span className="text-muted">({headings.length} sections)</span>
+          </div>
+          <ul className="mt-3 space-y-2">
+            {headings.map((heading) => (
+              <li key={heading}>
+                <a
+                  className="text-muted hover:text-primary transition-colors flex items-center gap-2"
+                  href={`#section-${encodeURIComponent(heading)}`}
+                >
+                  <span aria-hidden="true" className="text-muted/60">
+                    ↳
+                  </span>
+                  <span>{heading}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <div className="portfolio-prose mt-8 max-w-reading">
         <p className="portfolio-about-lead portfolio-editorial">

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#050505"/>
+  
+  <!-- Subtle border frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#0c0c0c" stroke="#222222" stroke-width="2"/>
+  
+  <!-- Titlebar -->
+  <rect x="40" y="40" width="1120" height="60" rx="16" fill="#141414"/>
+  <rect x="40" y="85" width="1120" height="15" fill="#141414"/>
+  <line x1="40" y1="100" x2="1160" y2="100" stroke="#222222" stroke-width="2"/>
+  
+  <!-- Terminal controls -->
+  <circle cx="76" cy="70" r="7" fill="#ef4444"/>
+  <circle cx="98" cy="70" r="7" fill="#eab308"/>
+  <circle cx="120" cy="70" r="7" fill="#22c55e"/>
+  
+  <!-- Titlebar label -->
+  <text x="150" y="75" font-family="'JetBrains Mono', monospace" font-size="16" fill="#888888" letter-spacing="1">~/lawandsoran.site · main</text>
+  
+  <!-- Eyebrow -->
+  <text x="100" y="180" font-family="'JetBrains Mono', monospace" font-size="20" fill="#888888" letter-spacing="2">~/INTRO</text>
+  
+  <!-- Main Name -->
+  <text x="100" y="270" font-family="'JetBrains Mono', monospace" font-size="76" font-weight="bold" fill="#ffffff" letter-spacing="-2">Lawand Soran</text>
+  
+  <!-- Role -->
+  <text x="100" y="340" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="500" fill="#9ca3af">Full-Stack Developer &amp; Founder</text>
+  
+  <!-- Editorial Tagline -->
+  <text x="100" y="415" font-family="Georgia, 'Newsreader', serif" font-style="italic" font-size="28" fill="#e5e5e5">Building products and turning ideas into software.</text>
+  
+  <!-- Tech Stack Chips -->
+  <g transform="translate(100, 480)">
+    <rect x="0" y="0" width="140" height="42" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+    <text x="70" y="26" font-family="'JetBrains Mono', monospace" font-size="15" fill="#ffffff" text-anchor="middle">TypeScript</text>
+    
+    <rect x="156" y="0" width="110" height="42" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+    <text x="211" y="26" font-family="'JetBrains Mono', monospace" font-size="15" fill="#ffffff" text-anchor="middle">React</text>
+    
+    <rect x="282" y="0" width="120" height="42" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+    <text x="342" y="26" font-family="'JetBrains Mono', monospace" font-size="15" fill="#ffffff" text-anchor="middle">Node.js</text>
+    
+    <rect x="418" y="0" width="100" height="42" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+    <text x="468" y="26" font-family="'JetBrains Mono', monospace" font-size="15" fill="#ffffff" text-anchor="middle">Vite</text>
+    
+    <rect x="534" y="0" width="150" height="42" rx="6" fill="#1a1a1a" stroke="#333333" stroke-width="1"/>
+    <text x="609" y="26" font-family="'JetBrains Mono', monospace" font-size="15" fill="#ffffff" text-anchor="middle">Architecture</text>
+  </g>
+  
+  <!-- Status Badge -->
+  <g transform="translate(920, 480)">
+    <rect x="0" y="0" width="180" height="42" rx="6" fill="#111111" stroke="#22c55e" stroke-width="1"/>
+    <circle cx="24" cy="21" r="5" fill="#22c55e"/>
+    <text x="100" y="26" font-family="'JetBrains Mono', monospace" font-size="14" fill="#22c55e" text-anchor="middle">AVAILABLE</text>
+  </g>
+</svg>
