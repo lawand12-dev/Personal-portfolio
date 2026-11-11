@@ -12,5 +12,7 @@ This documentation set describes the portfolio's implemented architecture, visua
 | [ANIMATIONS.md](./ANIMATIONS.md) | Implemented motion/interaction effects, triggers, timings, reduced-motion behavior, and performance notes. |
 | [CONTENT.md](./CONTENT.md) | Existing content sources, current data shapes, empty content systems, and the steps/gaps for adding future projects or posts. |
 | [ROADMAP.md](./ROADMAP.md) | Status snapshot, prioritized work, estimates, launch dependencies, known gaps, and a suggested 2–4 week sequence. |
+| [SKILLS (Directory)](../.agents/skills/README.md) | Catalog of AI agent skills: project-specific domain runbooks and curated skills.sh engineering packages. |
+| [GIT-WORKFLOW.md](./GIT-WORKFLOW.md) | Commit message rules, Conventional Commits scopes, and automated pre-commit verification pipeline. |
 
 Update the relevant document whenever its source of truth changes. In particular, keep stack and routes aligned with `package.json` and `src/App.tsx`, token and interaction details aligned with the CSS, and the roadmap aligned with actual content and verified launch status. Mark proposed schemas and planned features as such until they exist in code.
