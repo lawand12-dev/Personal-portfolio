@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useReducedMotion } from 'motion/react'
 import lawandPhoto from '../../assets/Lawand.jpg'
+import { playSwitchSound } from '../../utils/sound'
 
 type ViewMode = 'binary' | 'photo'
 
@@ -185,6 +186,7 @@ function TerminalPortrait() {
   }
 
   function handleCardClick() {
+    playSwitchSound()
     if (mode === 'binary' && !isScanningRef.current) {
       setScanKey((k) => k + 1)
     } else {
@@ -197,25 +199,26 @@ function TerminalPortrait() {
       aria-label="Portrait in terminal format"
       className="portfolio-terminal overflow-hidden"
     >
-      <div className="portfolio-terminal-titlebar flex items-center justify-between border-b border-line bg-surface px-4 py-2">
-        <div className="portfolio-terminal-title flex items-center gap-3">
-          <div aria-hidden="true" className="portfolio-terminal-controls flex gap-1.5">
+      <div className="portfolio-terminal-titlebar flex items-center justify-between gap-3 border-b border-line bg-surface px-3 sm:px-4 py-2">
+        <div className="portfolio-terminal-title flex items-center gap-2.5 min-w-0">
+          <div aria-hidden="true" className="portfolio-terminal-controls flex gap-1.5 shrink-0">
             <span className="portfolio-terminal-control portfolio-terminal-control--close" />
             <span className="portfolio-terminal-control portfolio-terminal-control--minimize" />
             <span className="portfolio-terminal-control portfolio-terminal-control--maximize" />
           </div>
-          <span className="font-mono text-meta text-secondary">
+          <span className="font-mono text-meta text-secondary truncate">
             {mode === 'binary' ? '~/portrait.bin' : '~/portrait.jpg'}
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 font-mono text-meta">
+        <div className="flex items-center gap-1 font-mono text-meta shrink-0">
           {mode === 'binary' && (
             <button
               aria-label="Replay scan animation"
-              className="rounded-control px-2 py-0.5 text-secondary hover:text-primary transition-colors cursor-pointer"
+              className="hidden sm:inline-flex rounded-control px-2 py-0.5 text-secondary hover:text-primary transition-colors cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation()
+                playSwitchSound()
                 setScanKey((k) => k + 1)
               }}
               title="Re-run top-to-bottom scan"
@@ -233,14 +236,17 @@ function TerminalPortrait() {
             }`}
             onClick={(e) => {
               e.stopPropagation()
+              playSwitchSound()
               setMode('binary')
               setScanKey((k) => k + 1)
             }}
             type="button"
           >
-            01 Binary
+            Binary
           </button>
-          <span className="text-muted">/</span>
+          <span aria-hidden="true" className="text-muted">
+            /
+          </span>
           <button
             aria-pressed={mode === 'photo'}
             className={`rounded-control px-2 py-0.5 transition-colors cursor-pointer ${
@@ -250,6 +256,7 @@ function TerminalPortrait() {
             }`}
             onClick={(e) => {
               e.stopPropagation()
+              playSwitchSound()
               setMode('photo')
             }}
             type="button"
