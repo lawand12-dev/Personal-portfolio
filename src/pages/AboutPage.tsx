@@ -102,7 +102,7 @@ function AboutPage() {
                     <div className="overflow-hidden rounded-control border border-line bg-surface">
                       <img
                         alt={certificate.imageAlt}
-                        className="block aspect-[1318/741] w-full object-cover"
+                        className="block aspect-video w-full object-cover"
                         decoding="async"
                         height={certificate.height}
                         loading="lazy"

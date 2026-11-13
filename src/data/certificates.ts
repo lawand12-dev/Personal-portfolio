@@ -1,5 +1,5 @@
-import scrimbaAiEngineerCertificate from '../assets/Scrimba-AI-enginner-path.png'
-import scrimbaFullStackCertificate from '../assets/Scrimba-full-stack-certificate.png'
+import scrimbaAiEngineerCertificate from '../assets/Scrimba-AI-engineer-path.webp'
+import scrimbaFullStackCertificate from '../assets/Scrimba-full-stack-certificate.webp'
 
 export interface Certificate {
   id: string
@@ -29,8 +29,8 @@ export const certificates: Certificate[] = [
     image: scrimbaFullStackCertificate,
     imageAlt:
       'Scrimba certificate of completion for Lawand Soran in The Fullstack Developer Path',
-    width: 1318,
-    height: 741,
+    width: 960,
+    height: 540,
   },
   {
     id: 'scrimba-ai-engineer-path',
@@ -44,7 +44,7 @@ export const certificates: Certificate[] = [
     image: scrimbaAiEngineerCertificate,
     imageAlt:
       'Scrimba certificate of completion for Lawand Soran in The AI Engineer Path',
-    width: 1318,
-    height: 741,
+    width: 960,
+    height: 540,
   },
 ]
