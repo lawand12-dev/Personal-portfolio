@@ -48,6 +48,13 @@ test(tests): add vitest suites for contribution math and ActionLink
 chore(skills): install and organize skills from skills.sh
 ```
 
+### Commit-Writing System
+
+1. **Inspect & scope**: Run `git status --short` and stage only the exact files belonging to the current task (`git add <file1> <file2>` rather than `git add .`).
+2. **Choose `<type>(<scope>)`**: Pick the primary type and repository scope (also see `.agents/rules/git-commit.md`, which auto-loads via `trigger: always_on` and `GEMINI.md`).
+3. **Subject & body**: Keep the header imperative, lowercase, <= 72 characters, and without a trailing period. Use extra `-m "- ..."` flags for concise bullet points when multiple files or non-obvious decisions are included.
+4. **Verify**: Run `npm run precommit` (or `npm run lint && npm test && npm run build`) before committing.
+
 ---
 
 ## 2. Pre-Commit Verification Pipeline
