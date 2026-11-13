@@ -17,7 +17,7 @@ function FrozenOutlet() {
 }
 
 function PageShell() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const shouldReduceMotion = useReducedMotion()
   const mainRef = useRef<HTMLElement>(null)
   const previousPath = useRef(pathname)
@@ -25,9 +25,37 @@ function PageShell() {
   useEffect(() => {
     if (previousPath.current !== pathname) {
       previousPath.current = pathname
-      mainRef.current?.focus({ preventScroll: true })
+      if (!hash) {
+        mainRef.current?.focus({ preventScroll: true })
+      }
     }
-  }, [pathname])
+  }, [pathname, hash])
+
+  useEffect(() => {
+    if (!hash) return
+    const targetId = hash.slice(1)
+    let frameId = 0
+    let attempts = 0
+
+    // Retry across frames so lazy-loaded pages and AnimatePresence exits can mount the target.
+    const scrollToTarget = () => {
+      const element = document.getElementById(targetId)
+      if (element) {
+        element.scrollIntoView({
+          behavior: shouldReduceMotion ? 'auto' : 'smooth',
+          block: 'start',
+        })
+        return
+      }
+      if (attempts < 40) {
+        attempts += 1
+        frameId = window.requestAnimationFrame(scrollToTarget)
+      }
+    }
+
+    frameId = window.requestAnimationFrame(scrollToTarget)
+    return () => window.cancelAnimationFrame(frameId)
+  }, [pathname, hash, shouldReduceMotion])
 
   return (
     <div className="portfolio-site min-h-screen bg-page text-primary">
@@ -45,7 +73,11 @@ function PageShell() {
         <AnimatePresence
           initial={true}
           mode="wait"
-          onExitComplete={() => window.scrollTo({ top: 0, behavior: 'instant' })}
+          onExitComplete={() => {
+            if (!hash) {
+              window.scrollTo({ top: 0, behavior: 'instant' })
+            }
+          }}
         >
           <m.div
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

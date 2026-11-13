@@ -8,11 +8,12 @@ import {
 } from 'react'
 import { useNavigate } from 'react-router'
 import { getArticles } from '../../data/articles'
+import { certificates } from '../../data/certificates'
 import { isSoundEnabled, toggleSound } from '../../utils/sound'
 
 interface PaletteItem {
   id: string
-  category: 'Navigation' | 'Articles' | 'Connect' | 'Actions'
+  category: 'Navigation' | 'Articles' | 'Certificates' | 'Connect' | 'Actions'
   title: string
   subtitle: string
   shortcut?: string
@@ -93,6 +94,14 @@ export default function CommandPalette() {
       shortcut: '~/about',
       to: '/about',
     },
+    {
+      id: 'nav-certificates',
+      category: 'Navigation',
+      title: 'Certifications',
+      subtitle: 'Scrimba Fullstack & AI Engineer certificates',
+      shortcut: '~/certs',
+      to: '/about#certificates',
+    },
     ...articles.map((article) => ({
       id: `article-${article.slug}`,
       category: 'Articles' as const,
@@ -100,6 +109,14 @@ export default function CommandPalette() {
       subtitle: `${article.readTime} · ${article.formattedDate}`,
       shortcut: '~/read',
       to: `/writing/${article.slug}`,
+    })),
+    ...certificates.map((certificate) => ({
+      id: `cert-${certificate.id}`,
+      category: 'Certificates' as const,
+      title: certificate.title,
+      subtitle: `${certificate.issuer} · ${certificate.completedAt} · ${certificate.scope}`,
+      shortcut: 'verify ↗',
+      href: certificate.href,
     })),
     {
       id: 'connect-call',

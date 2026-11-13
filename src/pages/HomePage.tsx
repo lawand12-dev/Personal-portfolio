@@ -23,6 +23,10 @@ const skillGroups = [
     items: ["Node.js"],
   },
   {
+    label: "ai/",
+    items: ["AI-powered workflows", "LLM APIs", "Prompt engineering"],
+  },
+  {
     label: "styling/",
     items: ["Tailwind CSS", "shadcn/ui", "Base UI"],
   },
@@ -32,7 +36,7 @@ const skillGroups = [
   },
   {
     label: "tools/",
-    items: ["Git", "GitHub", "GitHub Actions", "Figma"],
+    items: ["Git", "GitHub", "GitHub Actions", "Vitest", "Figma"],
   },
   {
     label: "learning/",
