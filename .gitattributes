@@ -1,0 +1,3 @@
+# Exclude bundled AI agent skill scripts and assets from GitHub language statistics
+.agents/** linguist-vendored
+agent/** linguist-vendored
